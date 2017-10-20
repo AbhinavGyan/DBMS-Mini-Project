@@ -34,14 +34,15 @@
 					<li class="navbar-text"> </li>
 					<li><a href="doctor.html">For Doctors</a></li>
 					<li class="navbar-text"> </li>
-					<li><button type="button" class="btn btn-primary navbar-btn">Log In</button></li>
+					<li><a href="Login.php">Log In</a></li>
 					<li class="navbar-text"> </li>
-					<li><button type="button" class="btn btn-primary navbar-btn">Sign Up</button></li>
+					<li><a href="person.php">Sign Up</a></li>
 					<li class="navbar-text"> </li>
 				</ul>
 			</div>
 		</div>
 	</nav>
+	<nav class="navbar navbar-inverse" style="margin-bottom: 0;"></nav>
 
 	<!-- Bootstrap Carousel -->
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -55,21 +56,12 @@
 		<div class="carousel-inner">
 			<div class="item active">
 				<img src="images/slide.png" alt="Slide 1">
-				<div class="carousel-caption">
-					<h3>Slide 1</h3>
-				</div>
 			</div>
 			<div class="item">
 				<img src="images/slide.png" alt="Slide 2">
-				<div class="carousel-caption">
-					<h3>Slide 2</h3>
-				</div>
 			</div>
 			<div class="item">
 				<img src="images/slide.png" alt="Slide 3">
-				<div class="carousel-caption">
-					<h3>Slide 3</h3>
-				</div>
 			</div>
 		</div>
 		<!-- Left and right controls -->
@@ -81,6 +73,46 @@
 			<span class="glyphicon glyphicon-chevron-right"></span>
 			<span class="sr-only">Next</span>
 		</a>
+	</div>
+
+	<!-- Search -->
+	<div class="container-fluid" style="background-color: #28328c;">
+		<br>
+		<h1 style="color: White; text-align: center;">Find and Book</h1>
+		<br>
+		<form>
+			<div class="container-fluid">
+				<div class="col-md-2"></div>
+				<div class="col-md-2">
+					<div class="input-group input-group-lg">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+						<select class="form-control" id="selectCity">
+							<option>Mysore</option>
+						</select>
+					</div>
+					<br>
+				</div>
+				<div class="col-md-6">
+					<div class="input-group input-group-lg">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+						<input type="text" class="form-control" id="searchText" placeholder="Search Doctors, Clinics, Hospitals...">
+						<div class="input-group-btn">
+							<button type="submit" class="btn btn-default">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</div>
+					</div>
+					<br>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+		</form>
+	</div>
+	<!-- Search Image -->
+	<div class="carousel-inner">
+		<div class="item active">
+			<img src="images/search.png" alt="Search Image">
+		</div>
 	</div>
 </body>
 </html>
