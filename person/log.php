@@ -19,7 +19,7 @@ if ($conn->connect_error) {
 $n = $_POST["email"];
 $pass = $_POST["pass"];
 $password = md5($pass);
-$sql = "select * from pogin where email='$n' and pass='$password'";
+$sql = "select * from personLogin where email='$n' and password='$password';";
 $result = mysqli_query($conn, $sql);
 
 

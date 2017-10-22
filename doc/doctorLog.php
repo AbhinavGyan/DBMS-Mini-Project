@@ -1,7 +1,8 @@
 <html>
 <body>
-
 <?php
+session_start();
+
 $servername = "localhost";
 $username = "root";
 $password = "adirocks!?";
@@ -15,29 +16,22 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$x = $_POST["fname"];
-$y = $_POST["mname"];
-$z = $_POST["lname"];
-$dob = $_POST["dob"];
-$gender = $_POST['Gender'];
+$n = $_POST["email"];
 $pass = $_POST["pass"];
-$mobile = $_POST["mobile"];
-$mail = $_POST["email"];
-
 $password = md5($pass);
-
-$sql1 = "insert into person(fname,mname,lname,dob,gender,mobile)
-    	values('$x','$y','$z','$dob','$gender','$mobile');";
-$sql2 = "insert into pogin(email,pass)
-         values('$mail','$password');";
-
-//mysql_query($sql1, $con);
-//mysql_query($sql2, $con);
+$sql = "select * from doctorLogin where email='$n' and password='$password';";
+$result = mysqli_query($conn, $sql);
 
 
-if ($conn->query($sql1) === TRUE && $conn->query($sql2) === TRUE) {
-    echo "New record created successfully";
-   
+if($result->num_rows === 1) {
+    $_SESSION['email'] = $n;
+    $_SESSION['pass'] = $pass;
+    header('Location: doctorLogged.php');
+    exit;
+}
+else {
+    header('Location: doctorFailed.php');
+    exit;
 }
 
 /*$result = mysql_query("SELECT number FROM one");
@@ -59,8 +53,6 @@ else {
 */
 $conn->close();
 ?>
-<br>
-<a href="Login.php">Back to Login</a>
 
 </body>
 </html>

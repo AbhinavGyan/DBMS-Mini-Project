@@ -22,7 +22,7 @@ if ($conn->connect_error) {
 $email = $_SESSION['email'];
 $pass = $_SESSION['pass'];
 $password = md5($pass);
-$sql = "select person.* from pogin , person where person.pid = pogin.pid and pogin.email = '$email' and pogin.pass = '$password'";
+$sql = "select doctor.* from doctorLogin , doctor where doctor.doctorID = doctorLogin.doctorID and doctorLogin.email = '$email' and doctorLogin.password = '$password';";
 $result = $conn->query($sql);
 
 $array = array();
@@ -30,7 +30,7 @@ $array = array();
 if ($result->num_rows === 1) {
     // output data of each row
    while($row = $result->fetch_assoc()) {
-        echo "Welcome " . $row["fname"]. "<br>";
+        echo "Welcome Dr." . $row["firstName"]. "<br>";
     }
 } 
 else {
