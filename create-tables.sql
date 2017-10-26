@@ -5,7 +5,7 @@ use SABS;
 create table person (
 	personID int auto_increment,
 	firstName varchar(50) not null,
-	middleName varchar(50) not null,
+	middleName varchar(50),
 	lastName varchar(50) not null,
 	gender varchar(6) not null,
 	dob date not null,
@@ -40,7 +40,7 @@ create table personLogin (
 create table doctor (
 	doctorID int auto_increment,
 	firstName varchar(50) not null,
-	middleName varchar(50) not null,
+	middleName varchar(50),
 	lastName varchar(50) not null,
 	gender varchar(6) not null,
 	dob date not null,
