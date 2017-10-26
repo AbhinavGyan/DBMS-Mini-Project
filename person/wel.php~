@@ -27,9 +27,9 @@ $mail = $_POST["email"];
 $password = md5($pass);
 
 $sql1 = "insert into person(firstName,middleName,lastName,gender,dob,phoneNumber,registerDate)
-    	values('$x','$y','$z','$gender','$dob','$mobile',CURRENT_TIMESTAMP());";
+    	values('$x','$y','$z','$gender','$dob','$mobile',curdate());";
 $sql2 = "insert into personLogin(personID , email,password,question,answer,lastLogin)
-        values(last_insert_id(), '$mail','$password','What is your name','aditya',CURRENT_TIMESTAMP());";
+        values(last_insert_id(), '$mail','$password','What is your name','aditya',curdate());";
 
 //mysql_query($sql1, $con);1
 //mysql_query($sql2, $con);

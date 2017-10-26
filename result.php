@@ -1,8 +1,7 @@
 <html>
 <body>
-<?php
-session_start();
 
+<?php
 $servername = "localhost";
 $username = "root";
 $password = "adirocks!?";
@@ -16,24 +15,29 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$n = $_POST["email"];
-$pass = $_POST["pass"];
-$password = md5($pass);
+$x = $_POST["searchText"];
 
-echo $n;
-echo $password;
-$sql1 = "select * from personLogin where email='$n' and password='$password';";
-$result = mysqli_query($conn, $sql);
+$sql = "select * from doctor where department = '$x';";
+$result = $conn->query($sql);
 
-if($result->num_rows === 1) {
-    //$_SESSION['email'] = $n;
-    //$_SESSION['pass'] = $pass;
-    //header('Location: logged.php');
-    //exit;
+
+//$result = mysqli_query("select * from doctor where department = '$x';");
+
+//$sql = "select * from doctor where department = '$x';";
+
+//$result = mysqli_query($conn, $sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "name: " . $row["firstName"]. " - qualification: " . $row["qualification"]. "<br>";
+        echo "<br>";
+        echo "<br>";
+        echo "<br>";
+    }
 }
 else {
-    //header('Location: Failed.php');
-    //exit;
+     echo "0 results";
 }
 
 /*$result = mysql_query("SELECT number FROM one");
@@ -55,6 +59,8 @@ else {
 */
 $conn->close();
 ?>
+<br>
+<a href="index.html">Back to Main Page</a>
 
 </body>
 </html>

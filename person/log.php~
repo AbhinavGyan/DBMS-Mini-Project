@@ -19,21 +19,19 @@ if ($conn->connect_error) {
 $n = $_POST["email"];
 $pass = $_POST["pass"];
 $password = md5($pass);
-
-echo $n;
-echo $password;
-$sql1 = "select * from personLogin where email='$n' and password='$password';";
+$sql = "select * from personLogin where email='$n' and password='$password';";
 $result = mysqli_query($conn, $sql);
 
+
 if($result->num_rows === 1) {
-    //$_SESSION['email'] = $n;
-    //$_SESSION['pass'] = $pass;
-    //header('Location: logged.php');
-    //exit;
+    $_SESSION['email'] = $n;
+    $_SESSION['pass'] = $pass;
+    header('Location: logged.php');
+    exit;
 }
 else {
-    //header('Location: Failed.php');
-    //exit;
+    header('Location: Failed.php');
+    exit;
 }
 
 /*$result = mysql_query("SELECT number FROM one");
