@@ -125,6 +125,14 @@
 			<input type="email" name="email" placeholder = "Required" onblur="return validateEmail(this)" required/>
 		</div>
 		<div class="input-group">
+			<label>Fee<sup>*</sup></label>
+			<input type="number" name="fee" placeholder = "Reasonable Price" onblur="return validatenum(this)" required/>
+		</div>
+		<div class="input-group">
+			<label>Hospital/Clinic Name<sup>*</sup></label>
+			<input type="text" name="building" placeholder = "Required" required/>
+		</div>
+		<div class="input-group">
 			<button type="submit" class="btn" name="register">Register</button>
 		</div>
 		<p>

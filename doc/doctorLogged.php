@@ -24,7 +24,6 @@ $pass = $_SESSION['pass'];
 $password = md5($pass);
 $sql = "select doctor.* from doctorLogin , doctor where doctor.doctorID = doctorLogin.doctorID and doctorLogin.email = '$email' and doctorLogin.password = '$password';";
 $result = $conn->query($sql);
-
 $array = array();
 
 if ($result->num_rows === 1) {

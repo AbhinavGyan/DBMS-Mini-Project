@@ -80,7 +80,7 @@
 		<br>
 		<h1 style="color: White; text-align: center;">Find and Book</h1>
 		<br>
-		<form>
+		<form name="search1" method="post" action="result.php">
 			<div class="container-fluid">
 				<div class="col-md-2"></div>
 				<div class="col-md-2">
@@ -94,13 +94,15 @@
 				</div>
 				<div class="col-md-6">
 					<div class="input-group input-group-lg">
-						<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-						<input type="text" class="form-control" id="searchText" placeholder="Search Doctors, Clinics, Hospitals...">
-						<div class="input-group-btn">
-							<button type="submit" class="btn btn-default">
-								<i class="glyphicon glyphicon-search"></i>
-							</button>
-						</div>
+						<form>
+							<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+							<input type="text" class="form-control" name="searchText" placeholder="Search Doctors">
+							<div class="input-group-btn">
+								<button type="submit" class="btn btn-default">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</form>
 					</div>
 					<br>
 				</div>

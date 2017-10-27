@@ -25,21 +25,52 @@ $gender = $_POST['Gender'];
 $pass = $_POST["pass"];
 $mobile = $_POST["mobile"];
 $mail = $_POST["email"];
-
+$fee = $_POST["fee"];
+$building = $_POST["building"];
 $password = md5($pass);
 
-$sql1 = "insert into doctor(firstName,middleName,lastName,dob,gender,phoneNumber,qualification,department)
-    	values('$x','$y','$z','$dob','$gender','$mobile','$qual','$dept');";
-$sql2 = "insert into doctorLogin(email,password)
-         values('$mail','$password');";
+$sql1 = "select departmentID from department where name = '$dept';";
+
+$result = mysqli_query($conn,$sql1);
+
+if($result->num_rows === 1) {
+    while($row = $result->fetch_assoc()) {
+        $departmentID = $row['departmentID'];
+    }
+    //$departmentID = $row['departmentID'];
+}
+else {
+    header('Location: doctorFailed.php');
+    exit();
+}
+
+
+$sql2 = "select buildingID from building where name = '$building';";
+
+$result1 = mysqli_query($conn,$sql2);
+
+if($result1->num_rows === 1) {
+    while($row = $result1->fetch_assoc()) {
+        $buildingID = $row['buildingID'];
+    }
+//$buildingID = $row['buildingID'];
+}
+else {
+    header('Location: doctorFailed.php');
+    exit();
+}
+
+
+$sql3 = "insert into doctor(firstName,middleName,lastName,dob,gender,phoneNumber , registerDate , qualification , departmentID , buildingID , fee , status)
+    	values('$x','$y','$z','$dob','$gender' , '$mobile' , curdate() , '$qual' , '$departmentID' , '$buildingID' , '$fee' , 'pending');";
+$sql4 = "insert into doctorLogin(doctorID , email,password,question,answer,lastLogin)
+        values(last_insert_id(), '$mail','$password','What is your name','aditya',CURRENT_TIMESTAMP());";
 
 //mysql_query($sql1, $con);
 //mysql_query($sql2, $con);
 
-
-if ($conn->query($sql1) === TRUE && $conn->query($sql2) === TRUE) {
-    echo "New record created successfully";
-   
+if ($conn->query($sql3) === TRUE && $conn->query($sql4) === TRUE) {
+    echo "New record created successfully";   
 }
 
 /*$result = mysql_query("SELECT number FROM one");

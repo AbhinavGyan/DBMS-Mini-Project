@@ -22,7 +22,6 @@ $password = md5($pass);
 $sql = "select * from doctorLogin where email='$n' and password='$password';";
 $result = mysqli_query($conn, $sql);
 
-
 if($result->num_rows === 1) {
     $_SESSION['email'] = $n;
     $_SESSION['pass'] = $pass;
