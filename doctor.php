@@ -26,13 +26,13 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="doctor.html">Smart Appointment Booking System</a>
+				<a class="navbar-brand" href="doctor.php">Smart Appointment Booking System</a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbarTop">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="index.html">For Patients</a></li>
+					<li><a href="index.php">For Patients</a></li>
 					<li class="navbar-text"> </li>
-					<li class="active"><a href="doctor.html">For Doctors</a></li>
+					<li class="active"><a href="doctor.php">For Doctors</a></li>
 					<li class="navbar-text"> </li>
 					<li><a href="doc/doctorLogin.php">Log In</a></li>
 					<li class="navbar-text"> </li>

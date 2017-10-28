@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,17 +32,35 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">Smart Appointment Booking System</a>
+				<a class="navbar-brand" href="index.php">Smart Appointment Booking System</a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbarTop">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="index.html">For Patients</a></li>
+					<li class="active"><a href="index.php">For Patients</a></li>
 					<li class="navbar-text"> </li>
-					<li><a href="doctor.html">For Doctors</a></li>
+					<li><a href="doctor.php">For Doctors</a></li>
 					<li class="navbar-text"> </li>
-					<li><a href="person/Login.php">Log In</a></li>
-					<li class="navbar-text"> </li>
-					<li><a href="person/person.php">Sign Up</a></li>
+
+					<?php
+
+					if (isset($_SESSION['personID'])) {
+
+						//logged in
+						echo '
+							<li><a href="person/profile.php">My Profile</a></li>
+							<li class="navbar-text"> </li>
+							<li><a href="person/logout.php">Log Out</a></li>';
+					} else {
+
+						//not logged in
+						echo '
+							<li><a href="person/login.php">Log In</a></li>
+							<li class="navbar-text"> </li>
+							<li><a href="person/signup.php">Sign Up</a></li>';
+					}
+
+					?>
+
 					<li class="navbar-text"> </li>
 				</ul>
 			</div>
