@@ -25,22 +25,26 @@ if (isset($_POST['submitPersonLogin'])) {
 	}
 
 	//verify email
-	$sql = "select * from personLogin where email = '$email'";
+	$sql = "select * from personLogin where email = '$email';";
 	$result = $conn->query($sql);
 
 	if ($result->num_rows < 1) {
+
+		$_SESSION['invalid_login'] = 1;
 
 		header("Location: ../person/login.php?login=invalid_login");
 		exit();
 	}
 
-	//verify password
 	if ($row = $result->fetch_assoc()) {
 
 		//hashing the password
 		$hashedPassword = md5($password);
 
+		//verify password
 		if ($hashedPassword !== $row['password']) {
+
+			$_SESSION['invalid_login'] = 1;
 
 			header("Location: ../person/login.php?login=invalid_login");
 			exit();
@@ -49,6 +53,7 @@ if (isset($_POST['submitPersonLogin'])) {
 		$_SESSION['personID'] = $row['personID'];
 		$_SESSION['email'] = $row['email'];
 		$_SESSION['lastLogin'] = $row['lastLogin'];
+		$_SESSION['login'] = 1;
 
 		header("Location: ../index.php?login=success");
 		exit();

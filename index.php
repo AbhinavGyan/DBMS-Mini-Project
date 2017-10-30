@@ -21,8 +21,79 @@ session_start();
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<script src="scripts/jquery.min.js"></script>
 	<script src="scripts/bootstrap.min.js"></script>
+
+	<?php
+
+	if (isset($_SESSION['login']) && $_SESSION['login']) {
+
+		//display logged in modal
+		echo '
+			<script>
+				$(document).ready(function(){
+					$("#loggedInModal").modal();
+				});
+			</script>';
+		$_SESSION['login'] = 0;
+	}
+
+	if (isset($_SESSION['logout']) && $_SESSION['logout']) {
+
+		//display logged out modal
+		echo '
+			<script>
+				$(document).ready(function(){
+					$("#loggedOutModal").modal();
+				});
+			</script>';
+		$_SESSION['logout'] = 0;
+	}
+
+	?>
+
 </head>
 <body>
+	<!-- Logged In Modal -->
+	<div id="loggedInModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal Content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">Welcome!</h3>
+				</div>
+				<div class="modal-body">
+					<h4>You are logged in!</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Logged Out Modal -->
+	<div id="loggedOutModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal Content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">Bye!</h3>
+				</div>
+				<div class="modal-body">
+					<h4>You are logged out!</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 	<!-- Bootstrap Navigation Bar Top -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
@@ -49,7 +120,7 @@ session_start();
 						echo '
 							<li><a href="person/profile.php">My Profile</a></li>
 							<li class="navbar-text"> </li>
-							<li><a href="person/logout.php">Log Out</a></li>';
+							<li><a href="../includes/person-logout.php">Log Out</a></li>';
 					} else {
 
 						//not logged in

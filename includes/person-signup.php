@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 if (isset($_POST['submitPersonSignup'])) {
 
 	require_once "connect.php";
@@ -38,7 +40,7 @@ if (isset($_POST['submitPersonSignup'])) {
 	}
 
 	//check for already registered
-	$sql = "select * from personLogin where email = '$email'";
+	$sql = "select * from personLogin where email = '$email';";
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0) {
@@ -61,7 +63,7 @@ if (isset($_POST['submitPersonSignup'])) {
 
 	if ($conn->query($sql) !== TRUE) {
 
-		echo "Error: " . $conn->error;
+		//echo "Error: " . $conn->error;
 		$conn->rollback();
 		header("Location: ../person/signup.php?signup=error");
 		exit();
@@ -72,7 +74,7 @@ if (isset($_POST['submitPersonSignup'])) {
 
 	if ($conn->query($sql) !== TRUE) {
 
-		echo "Error: " . $conn->error;
+		//echo "Error: " . $conn->error;
 		$conn->rollback();
 		header("Location: ../person/signup.php?signup=error");
 		exit();
@@ -83,6 +85,8 @@ if (isset($_POST['submitPersonSignup'])) {
 
 	//enable autocommit
 	$conn->autocommit(TRUE);
+
+	$_SESSION['signup'] = 1;
 
 	header("Location: ../person/login.php?signup=success");
 	exit();

@@ -49,7 +49,6 @@
 						<label class="control-label col-md-3">Gender:</label>
 						<div class="col-md-9">
 							<select class="form-control" name="gender">
-								<option value=""></option>
 								<option value="female">Female</option>
 								<option value="male">Male</option>
 								<option value="other">Other</option>
@@ -84,10 +83,9 @@
 						<label class="control-label col-md-3">Security Question:</label>
 						<div class="col-md-9">
 							<select class="form-control" name="question">
-								<option value=""></option>
-								<option value="What was the last name of your first grade teacher?">What was the last name of your first grade teacher?</option>
 								<option value="In what city or town was your mother born?">In what city or town was your mother born?</option>
 								<option value="What street did you live on when you were 8 years old?">What street did you live on when you were 8 years old?</option>
+								<option value="What was the last name of your first grade teacher?">What was the last name of your first grade teacher?</option>
 								<option value="What was your grandfather's occupation?">What was your grandfather's occupation?</option>
 							</select>
 						</div>
@@ -109,6 +107,7 @@
 						<label class="control-label col-md-3"></label>
 						<div class="col-md-9">
 							<p>Already a member? <a href="login.php">Log In</a></p>
+							<p><a href="../index.php">Home</a></p>
 						</div>
 					</div>
 				</form>
