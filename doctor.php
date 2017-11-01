@@ -103,32 +103,31 @@ session_start();
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.php">Smart Appointment Booking System</a>
+				<a class="navbar-brand" href="doctor.php">Smart Appointment Booking System</a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbarTop">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="index.php">For Patients</a></li>
+					<li><a href="index.php">For Patients</a></li>
 					<li class="navbar-text"> </li>
-					<li><a href="doctor.php">For Doctors</a></li>
+					<li class="active"><a href="doctor.php">For Doctors</a></li>
 					<li class="navbar-text"> </li>
-
 					<?php
 
-					if (isset($_SESSION['personID'])) {
+					if (isset($_SESSION['doctorID'])) {
 
 						//logged in
 						echo '
-							<li><a href="person/profile.php">My Profile</a></li>
+							<li><a href="doc/profile.php">My Profile</a></li>
 							<li class="navbar-text"> </li>
-							<li><a href="../includes/person-logout.php">Log Out</a></li>';
+							<li><a href="../includes/doctor-logout.php">Log Out</a></li>';
 					} 
                     else {
 
 						//not logged in
 						echo '
-							<li><a href="person/login.php">Log In</a></li>
+							<li><a href="doc/login.php">Log In</a></li>
 							<li class="navbar-text"> </li>
-							<li><a href="person/signup.php">Sign Up</a></li>';
+							<li><a href="doc/signup.php">Sign Up</a></li>';
 					}
 
 					?>
@@ -139,78 +138,5 @@ session_start();
 		</div>
 	</nav>
 	<nav class="navbar navbar-inverse" style="margin-bottom: 0;"></nav>
-
-	<!-- Bootstrap Carousel -->
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-		<!-- Indicators -->
-		<ol class="carousel-indicators">
-			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#myCarousel" data-slide-to="1"></li>
-			<li data-target="#myCarousel" data-slide-to="2"></li>
-		</ol>
-		<!-- Wrapper for slides -->
-		<div class="carousel-inner">
-			<div class="item active">
-				<img src="images/slide.png" alt="Slide 1">
-			</div>
-			<div class="item">
-				<img src="images/slide.png" alt="Slide 2">
-			</div>
-			<div class="item">
-				<img src="images/slide.png" alt="Slide 3">
-			</div>
-		</div>
-		<!-- Left and right controls -->
-		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-			<span class="glyphicon glyphicon-chevron-left"></span>
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="right carousel-control" href="#myCarousel" data-slide="next">
-			<span class="glyphicon glyphicon-chevron-right"></span>
-			<span class="sr-only">Next</span>
-		</a>
-	</div>
-
-	<!-- Search -->
-	<div class="container-fluid" style="background-color: #28328c;">
-		<br>
-		<h1 style="color: White; text-align: center;">Find and Book</h1>
-		<br>
-		<form name="search1" action="result.php">
-			<div class="container-fluid">
-				<div class="col-md-2"></div>
-				<div class="col-md-2">
-					<div class="input-group input-group-lg">
-						<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-						<select class="form-control" id="selectCity">
-							<option>Mysore</option>
-						</select>
-					</div>
-					<br>
-				</div>
-				<div class="col-md-6">
-					<div class="input-group input-group-lg">
-						<form>
-							<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-							<input type="text" class="form-control" name="searchText" placeholder="Search Doctors">
-							<div class="input-group-btn">
-								<button type="submit" class="btn btn-default">
-									<i class="glyphicon glyphicon-search"></i>
-								</button>
-							</div>
-						</form>
-					</div>
-					<br>
-				</div>
-				<div class="col-md-2"></div>
-			</div>
-		</form>
-	</div>
-	<!-- Search Image -->
-	<div class="carousel-inner">
-		<div class="item active">
-			<img src="images/search.png" alt="Search Image">
-		</div>
-	</div>
 </body>
 </html>
