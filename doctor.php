@@ -139,4 +139,103 @@ session_start();
 	</nav>
 	<nav class="navbar navbar-inverse" style="margin-bottom: 0;"></nav>
 </body>
+<head>
+	<style>
+		.bg-1 { 
+      background-color: #1abc9c; /* Green */
+      color: #ffffff;}
+
+      .bg-2 { 
+      background-color: #99ffcc; /* Green */
+      color: #ffffff;}
+      .bg-3 { 
+      background-color: #80ffff; /* Green */
+      color:black;}
+      
+</style>
+</head> 
+
+<div class="row bg-1">
+    <div class="col-xs-12 col-sm-6 cushion-left text-container">
+          <h1 class="h1 col-xs-12 clear-left"><strong><basefont><em>SABS</em></basefont></strong></h1>
+          <div class="clearfix"></div>
+        <h2 class="h2 col-xs-11 clear-left">Get hold of the smart & effortless appointment management system and deliver better patient care! </h2>
+      <div class="clearfix"></div>
+      <div class="clearfix"></div>
+        <div class="text h3 col-xs-12 col-sm-12 clear-left"> Take your practice to new heights where you don't just get new patients but also enhance your credibility.<br> Manage your practice efficiently, engage with patients to offer them a premium experience, or increase your visibility online.</div>
+      <div class="clearfix"></div>
+    </div>
+     <div class="desktop image-container  col-xs-12 col-sm-6 cushion-right
+       screenshot-sticky-wrap ">
+        <img class=" desktop" alt="SABS"
+        title="SABS for doctors" src= "https://www.practo.com/providers/static/images/pages/doctors/banner.png"/>
+    </div>
+  </div>
+
+<hr>
+<div class="row bg-2">
+    <div class="col-xs-12 col-sm-6  text-container">
+          <h1 class="h1 col-xs-12 clear-left"><strong><basefont><em>SABS PROFILE</em></basefont></strong></h1>
+        <h2 class="h2 col-xs-11 clear-left">HELP PATIENTS TO FIND THEIR DOCTOR</h2>
+      <div class="clearfix"></div>
+      <div class="clearfix"></div>
+        <div class="text h3 col-xs-12 col-sm-12 clear-left"> Be a part of the digital revolution happening in healthcare in India. Inform patients about your expertise, experience, educational qualifications etc and let your patients get to know you better.</div>
+      <div class="clearfix"></div>
+      <div class="clearfix"></div>
+      <br>
+      <br>
+      <div class="text-left">
+      <a href="doc/signup.php" class="btn btn-default  btn-lg">Sign up</a>
+      </div>
+
+    </div>
+
+     <div class="desktop image-container  col-xs-12 col-sm-6 cushion-right
+       screenshot-sticky-wrap ">
+        <img class=" desktop" alt="SABS"
+        title="SABS for doctors" src= "images/doc1.jpg"/>
+    </div>
+  </div>
+ 
+<hr>
+<div class="row ">
+    <div class="col-xs-12 col-sm-6  text-container">
+          <h1 class="h1 col-xs-12 clear-left text-primary"><strong><basefont><em>SABS Consult</em></basefont></strong></h1>
+        <h2 class="h2 col-xs-11 clear-left text-primary">STAY CONNECTED TO YOUR PATIENTS 24X7! </h2>
+      <div class="clearfix"></div>
+      <div class="clearfix"></div>
+        <div class="text h3 col-xs-12 col-sm-12 clear-left text-info"> ~ Paperless medical records and appointment management that saves you a lot of time and energy.<br><br>~ View patients' details even when they are not in the clinic.<br><br>~ Confirm or cancel an appointment according to your convenience. </div>
+      <div class="clearfix"></div>
+      <div class="clearfix"></div>
+
+    </div>
+
+     <div class="desktop image-container  col-xs-12 col-sm-6 cushion-right
+       screenshot-sticky-wrap ">
+        <img class=" desktop" alt="SABS"
+        title="SABS for doctors" src= "images/doc.jpg"/>
+    </div>
+  </div>
+ 
+<hr>
+<div class="row bg-3">
+    <div class="col-xs-12 col-sm-6  text-container">
+          <h1 class="h1 col-xs-12 clear-left "><strong><basefont><em>HEALTH FEEDS</em></basefont></strong></h1>
+        <h3 class="h2 col-xs-11 clear-left">EDUCATE AND CREATE AWARENESS</h3>
+      <div class="clearfix"></div>
+      <div class="clearfix"></div>
+        <div class="text h3 col-xs-12 col-sm-12 clear-left"> Share your knowledge and experience with the patients and help them heal at home. Post health tips daily to educate and inspire people to lead a healthier lifestyle and strengthen people's trust in you.</div>
+      <div class="clearfix"></div>
+      <div class="clearfix"></div>
+
+    </div>
+
+     <div class="desktop image-container  col-xs-12 col-sm-6 cushion-right
+       screenshot-sticky-wrap ">
+        <img class=" desktop" alt="SABS"
+        title="SABS for doctors" src= "imageshealthfeed.jpg" width="600" />
+    </div>
+  </div>
+ 
+<hr>
 </html>
