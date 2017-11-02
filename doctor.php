@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+//$_SESSION['email'] = $_SESSION['email'];
 ?>
 
 <!DOCTYPE html>
@@ -236,6 +236,5 @@ session_start();
         title="SABS for doctors" src= "imageshealthfeed.jpg" width="600" />
     </div>
   </div>
- 
 <hr>
 </html>
