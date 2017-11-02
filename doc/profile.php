@@ -22,51 +22,57 @@ session_start();
 
 
 	<?php
-
-		$doctorID = $_SESSION['doctorID'];
+		if(isset($_SESSION['doctorID'])) {
+	
+			$doctorID = $_SESSION['doctorID'];
 		
-		require_once "../includes/connect.php";
+			require_once "../includes/connect.php";
 
-		$sql1 = "select * from doctorLogin where doctorID = '$doctorID';";
-		$result1 = $conn->query($sql1);
+			$sql1 = "select * from doctorLogin where doctorID = '$doctorID';";
+			$result1 = $conn->query($sql1);
 
-		if ($row = $result1->fetch_assoc()) {
+			if ($row = $result1->fetch_assoc()) {
 
-			$email = $row['email'];
-			$lastLogin = $row['lastLogin'];
+				$email = $row['email'];
+				$lastLogin = $row['lastLogin'];
+			}
+
+			$sql2 = "select * from doctor where doctorID = '$doctorID';";
+			$result2 = $conn->query($sql2);
+
+			if ($row = $result2->fetch_assoc()) {
+
+				$firstName = $row['firstName'];
+				$middleName = $row['middleName'];
+				$lastName = $row['lastName'];
+				$phoneNumber = $row['phoneNumber'];
+				$departmentID = $row['departmentID'];
+				$buildingID = $row['buildingID'];
+				$experience = $row['experience'];
+				$fee = $row['fee'];
+				$qualification = $row['qualification'];
+				$dob = $row['dob'];
+			}
+
+			$sql3 = "select * from department where departmentID = '$departmentID';";
+			$result3 = $conn->query($sql3);
+
+			if ($row = $result3->fetch_assoc()) {
+
+				$department = $row['name'];
+			}		
+
+			$sql4 = "select * from building where buildingID = '$buildingID';";
+			$result4 = $conn->query($sql4);
+
+			if ($row = $result4->fetch_assoc()) {
+
+				$building = $row['name'];
+			}
 		}
-
-		$sql2 = "select * from doctor where doctorID = '$doctorID';";
-		$result2 = $conn->query($sql2);
-
-		if ($row = $result2->fetch_assoc()) {
-
-			$firstName = $row['firstName'];
-			$middleName = $row['middleName'];
-			$lastName = $row['lastName'];
-			$phoneNumber = $row['phoneNumber'];
-			$departmentID = $row['departmentID'];
-			$buildingID = $row['buildingID'];
-			$experience = $row['experience'];
-			$fee = $row['fee'];
-			$qualification = $row['qualification'];
-			$dob = $row['dob'];
-		}
-
-		$sql3 = "select * from department where departmentID = '$departmentID';";
-		$result3 = $conn->query($sql3);
-
-		if ($row = $result3->fetch_assoc()) {
-
-			$department = $row['name'];
-		}		
-
-		$sql4 = "select * from building where buildingID = '$buildingID';";
-		$result4 = $conn->query($sql4);
-
-		if ($row = $result4->fetch_assoc()) {
-
-			$building = $row['name'];
+		else {
+			header("Location: ../doc/signup.php?signup=invalid");
+			exit();
 		}
 	?>
 </head>
@@ -167,18 +173,18 @@ session_start();
 					<div class="form-group">
 						<label class="control-label col-md-3">Time Slots:</label>
 						<div class="col-md-9">
-							<input type="checkbox" name="slot1" value="y">slot @ 10:00
-							<input type="checkbox" name="slot2" value="y">slot @ 10:30
-							<input type="checkbox" name="slot3" value="y">slot @ 11:00
-							<input type="checkbox" name="slot4" value="y">slot @ 11:30<br><br><br>
-							<input type="checkbox" name="slot5" value="y">slot @ 14:00
-							<input type="checkbox" name="slot6" value="y">slot @ 14:30
-							<input type="checkbox" name="slot7" value="y">slot @ 15:00
-							<input type="checkbox" name="slot8" value="y">slot @ 15:30<br><br><br>
-							<input type="checkbox" name="slot9" value="y">slot @ 18:00
-							<input type="checkbox" name="slot10" value="y">slot @ 18:30
-							<input type="checkbox" name="slot11" value="y">slot @ 19:00
-							<input type="checkbox" name="slot12" value="y">slot @ 19:30
+							<input type="checkbox" name="slot1" value="1">slot @ 10:00
+							<input type="checkbox" name="slot2" value="1">slot @ 10:30
+							<input type="checkbox" name="slot3" value="1">slot @ 11:00
+							<input type="checkbox" name="slot4" value="1">slot @ 11:30<br><br><br>
+							<input type="checkbox" name="slot5" value="1">slot @ 14:00
+							<input type="checkbox" name="slot6" value="1">slot @ 14:30
+							<input type="checkbox" name="slot7" value="1">slot @ 15:00
+							<input type="checkbox" name="slot8" value="1">slot @ 15:30<br><br><br>
+							<input type="checkbox" name="slot9" value="1">slot @ 18:00
+							<input type="checkbox" name="slot10" value="1">slot @ 18:30
+							<input type="checkbox" name="slot11" value="1">slot @ 19:00
+							<input type="checkbox" name="slot12" value="1">slot @ 19:30
 						</div>
 					</div>
 					<br>

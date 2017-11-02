@@ -120,7 +120,7 @@ session_start();
 						echo '
 							<li><a href="person/profile.php">My Profile</a></li>
 							<li class="navbar-text"> </li>
-							<li><a href="../includes/person-logout.php">Log Out</a></li>';
+							<li><a href="includes/person-logout.php">Log Out</a></li>';
 					} 
                     else {
 

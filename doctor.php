@@ -24,6 +24,18 @@ session_start();
 
 	<?php
 
+	if (isset($_SESSION['doctorChanges']) && $_SESSION['doctorChanges']) {
+
+		//display changes in profile in modal
+		echo '
+			<script>
+				$(document).ready(function(){
+					$("#ChangedInModal").modal();
+				});
+			</script>';
+		$_SESSION['doctorChanges'] = 0;
+	}	
+
 	if (isset($_SESSION['login']) && $_SESSION['login']) {
 
 		//display logged in modal
@@ -52,6 +64,27 @@ session_start();
 
 </head>
 <body>
+
+	<div id="ChangedInModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal Content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">Success</h3>
+				</div>
+				<div class="modal-body">
+					<h4>Saved Changes</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 	<!-- Logged In Modal -->
 	<div id="loggedInModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
