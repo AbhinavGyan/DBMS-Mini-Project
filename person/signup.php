@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<script src="../scripts/jquery.min.js"></script>
 	<script src="../scripts/bootstrap.min.js"></script>
+	<script src="../scripts/validate.js"></script>
 </head>
 <body>
 	<br>
@@ -26,23 +27,17 @@
 			</div>
 			<div class="panel-body">
 				<br>
-				<form class="form-horizontal" action="../includes/person-signup.php" method="POST">
+				<form class="form-horizontal" name="myForm" action="../includes/person-signup.php" onsubmit="return validateFormPersonSignup()" method="POST">
 					<div class="form-group">
 						<label class="control-label col-md-3">First Name:</label>
 						<div class="col-md-9">
-							<input type="text" class="form-control" name="first" placeholder="Enter First Name" required>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3">Middle Name:</label>
-						<div class="col-md-9">
-							<input type="text" class="form-control" name="middle" placeholder="Enter Middle Name">
+							<input type="text" class="form-control" name="first" placeholder="Enter First Name" onblur="return validateName(this)" required>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Last Name:</label>
 						<div class="col-md-9">
-							<input type="text" class="form-control" name="last" placeholder="Enter Last Name" required>
+							<input type="text" class="form-control" name="last" placeholder="Enter Last Name" onblur="return validateName(this)">
 						</div>
 					</div>
 					<div class="form-group">
@@ -58,19 +53,19 @@
 					<div class="form-group">
 						<label class="control-label col-md-3">Date of Birth:</label>
 						<div class="col-md-9">
-							<input type="date" class="form-control" name="dob" required>
+							<input type="date" class="form-control" name="dob" value="<?php echo date("Y-m-d"); ?>" min="1900-01-01" max="<?php echo date("Y-m-d"); ?>" required>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Phone Number:</label>
 						<div class="col-md-9">
-							<input type="number" class="form-control" name="phone" placeholder="Enter Phone Number" required>
+							<input type="number" class="form-control" name="phone" placeholder="Enter Phone Number" onblur="return validatePhone(this)" required>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Email:</label>
 						<div class="col-md-9">
-							<input type="email" class="form-control" name="email" placeholder="Enter Email" required>
+							<input type="email" class="form-control" name="email" placeholder="Enter Email" onblur="return validateEmail(this)" required>
 						</div>
 					</div>
 					<div class="form-group">

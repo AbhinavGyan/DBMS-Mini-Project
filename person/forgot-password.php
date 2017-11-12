@@ -21,6 +21,7 @@ session_start();
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<script src="../scripts/jquery.min.js"></script>
 	<script src="../scripts/bootstrap.min.js"></script>
+	<script src="../scripts/validate.js"></script>
 
 	<?php
 
@@ -103,11 +104,11 @@ session_start();
 			</div>
 			<div class="panel-body">
 				<br>
-				<form class="form-horizontal" action="reset-password.php" method="POST">
+				<form class="form-horizontal" name="myForm" action="reset-password.php" onsubmit="return validateFormEmail()" method="POST">
 					<div class="form-group">
 						<label class="control-label col-md-3">Email:</label>
 						<div class="col-md-9">
-							<input type="email" class="form-control" name="email" placeholder="Enter Email" required>
+							<input type="email" class="form-control" name="email" placeholder="Enter Email" onblur="return validateEmail(this)" required>
 						</div>
 					</div>
 					<br>

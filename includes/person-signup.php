@@ -7,7 +7,6 @@ if (isset($_POST['submitPersonSignup'])) {
 	require_once "connect.php";
 
 	$first = $conn->real_escape_string($_POST['first']);
-	$middle = $conn->real_escape_string($_POST['middle']);
 	$last = $conn->real_escape_string($_POST['last']);
 	$gender = $conn->real_escape_string($_POST['gender']);
 	$dob = $conn->real_escape_string($_POST['dob']);
@@ -19,14 +18,14 @@ if (isset($_POST['submitPersonSignup'])) {
 
 	//error handlers
 	//check for empty fields
-	if (empty($first) || empty($last) || empty($gender) || empty($dob) || empty($phone) || empty($email) || empty($password) || empty($question) || empty($answer)) {
+	if (empty($first) || empty($gender) || empty($dob) || empty($phone) || empty($email) || empty($password) || empty($question) || empty($answer)) {
 
 		header("Location: ../person/signup.php?signup=empty");
 		exit();
 	}
 
 	//check for valid inputs
-	if (!preg_match("/^[a-zA-Z]*$/", $first) || !preg_match("/^[a-zA-Z ]*$/", $middle) || !preg_match("/^[a-zA-Z]*$/", $last) || !preg_match("/^[1-9][0-9]{9}$/", $phone)) {
+	if (!preg_match("/^[a-zA-Z ]*$/", $first) || !preg_match("/^[a-zA-Z ]*$/", $last) || !preg_match("/^[1-9][0-9]{9}$/", $phone)) {
 
 		header("Location: ../person/signup.php?signup=invalid");
 		exit();
@@ -45,7 +44,9 @@ if (isset($_POST['submitPersonSignup'])) {
 
 	if ($result->num_rows > 0) {
 
-		header("Location: ../person/signup.php?signup=already_registered");
+		$_SESSION['already_registered'] = 1;
+
+		header("Location: ../person/login.php?signup=already_registered");
 		exit();
 	}
 
@@ -59,7 +60,7 @@ if (isset($_POST['submitPersonSignup'])) {
 	$conn->autocommit(FALSE);
 
 	//insert data into person table
-	$sql = "insert into person (firstName, middleName, lastName, gender, dob, phoneNumber, registerDate) values ('$first', '$middle', '$last', '$gender', '$dob', '$phone', curdate());";
+	$sql = "insert into person (firstName, lastName, gender, dob, phoneNumber, registerDate) values ('$first', '$last', '$gender', '$dob', '$phone', curdate());";
 
 	if ($conn->query($sql) !== TRUE) {
 
