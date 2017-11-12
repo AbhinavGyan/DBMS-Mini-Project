@@ -5,22 +5,10 @@ use SABS;
 create table person (
 	personID int auto_increment,
 	firstName varchar(50) not null,
-	middleName varchar(50),
-	lastName varchar(50) not null,
+	lastName varchar(50),
 	gender varchar(6) not null,
 	dob date not null,
-
-	addressLine1 varchar(100),
-	addressLine2 varchar(100),
-	addressLine3 varchar(100),
-	city varchar(50),
-	district varchar(50),
-	state varchar(50),
-	country varchar(50),
-	pin int(6),
-
 	phoneNumber bigint(10) not null,
-	bloodGroup varchar(3),
 	registerDate date not null,
 
 	primary key (personID)
@@ -40,22 +28,10 @@ create table personLogin (
 create table doctor (
 	doctorID int auto_increment,
 	firstName varchar(50) not null,
-	middleName varchar(50),
-	lastName varchar(50) not null,
+	lastName varchar(50),
 	gender varchar(6) not null,
 	dob date not null,
-
-	addressLine1 varchar(100),
-	addressLine2 varchar(100),
-	addressLine3 varchar(100),
-	city varchar(50),
-	district varchar(50),
-	state varchar(50),
-	country varchar(50),
-	pin int(6),
-
 	phoneNumber bigint(10) not null,
-	bloodGroup varchar(3),
 	registerDate date not null,
 
 	qualification varchar(100) not null,
