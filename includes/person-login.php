@@ -54,7 +54,6 @@ if (isset($_POST['submitPersonLogin'])) {
 		$_SESSION['email'] = $row['email'];
 		$_SESSION['lastLogin'] = $row['lastLogin'];
 		$_SESSION['login'] = 1;
-		$_SESSION['notLogged']=0;
 
 		header("Location: ../index.php?login=success");
 		exit();

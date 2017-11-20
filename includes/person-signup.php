@@ -88,7 +88,6 @@ if (isset($_POST['submitPersonSignup'])) {
 	$conn->autocommit(TRUE);
 
 	$_SESSION['signup'] = 1;
-	$_SESSION['notLogged']=1;
 
 	header("Location: ../person/login.php?signup=success");
 	exit();

@@ -25,7 +25,7 @@ session_start();
 
 	<?php
 
-	if(isset($_SESSION['notLogged']) && $_SESSION['notLogged'])
+	if($_GET['notLogged'] == 1)
 	{
 		echo '
 			<script>
