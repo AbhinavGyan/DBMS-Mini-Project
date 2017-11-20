@@ -25,6 +25,17 @@ session_start();
 
 	<?php
 
+	if(isset($_SESSION['notLogged']) && $_SESSION['notLogged'])
+	{
+		echo '
+			<script>
+				$(document).ready(function(){
+					$("#notLoggedModal").modal();
+				});
+			</script>';
+		
+	}
+
 	if (isset($_SESSION['signup']) && $_SESSION['signup']) {
 
 		//display sign up success modal
@@ -77,6 +88,28 @@ session_start();
 
 </head>
 <body>
+
+	<!-- Not Logged Modal -->
+	<div id="notLoggedModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal Content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">Not Logged In</h3>
+				</div>
+				<div class="modal-body">
+					<h4>Please log in to continue...</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 	<!-- Sign Up Success Modal -->
 	<div id="signUpSuccessModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">

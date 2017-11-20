@@ -35,6 +35,9 @@ session_start();
 			</script>';
 		$_SESSION['login'] = 0;
 	}
+	else{
+		$_SESSION['notLogged']=1;
+	}
 
 	if (isset($_SESSION['logout']) && $_SESSION['logout']) {
 
@@ -46,6 +49,7 @@ session_start();
 				});
 			</script>';
 		$_SESSION['logout'] = 0;
+		$_SESSION['notLogged']=1;
 	}
 
 	?>

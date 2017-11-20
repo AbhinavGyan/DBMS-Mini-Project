@@ -105,8 +105,7 @@ if($result->num_rows === 1) {
            <p>Qualification :  <?php echo $qualification;?></p>
            <p>Contact :  <?php echo $phoneNumber;?></p>
            <p>Fee : <?php echo $fee;?>/-</p>
-    
-            <a href="result2.php?doctorID=<?php echo $doctorID; ?>"><span class="btn btn-info">
+            <a href="booking.php?doctorID=<?php echo $doctorID; ?>"><span class="btn btn-info">
 	        BOOK NOW &rsaquo;&rsaquo;
 	       </span></a>
 
