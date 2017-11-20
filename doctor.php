@@ -1,13 +1,13 @@
 <?php
 
 session_start();
-//$_SESSION['email'] = $_SESSION['email'];
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>SABS - Home</title>
+	<title>SABS - Doctor Home</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,69 +24,50 @@ session_start();
 
 	<?php
 
-	if (isset($_SESSION['doctorChanges']) && $_SESSION['doctorChanges']) {
+	if (isset($_SESSION['doctorLogin']) && $_SESSION['doctorLogin']) {
 
-		//display changes in profile in modal
+		//display doctor logged in modal
 		echo '
 			<script>
 				$(document).ready(function(){
-					$("#ChangedInModal").modal();
+					$("#doctorLoggedInModal").modal();
 				});
 			</script>';
-		$_SESSION['doctorChanges'] = 0;
-	}	
-
-	if (isset($_SESSION['login']) && $_SESSION['login']) {
-
-		//display logged in modal
-		echo '
-			<script>
-				$(document).ready(function(){
-					$("#loggedInModal").modal();
-				});
-			</script>';
-		$_SESSION['login'] = 0;
+		$_SESSION['doctorLogin'] = 0;
 	}
 
-	if (isset($_SESSION['logout']) && $_SESSION['logout']) {
+	if (isset($_SESSION['doctorLogout']) && $_SESSION['doctorLogout']) {
 
-		//display logged out modal
+		//display doctor logged out modal
 		echo '
 			<script>
 				$(document).ready(function(){
-					$("#loggedOutModal").modal();
+					$("#doctorLoggedOutModal").modal();
 				});
 			</script>';
-		$_SESSION['logout'] = 0;
+		$_SESSION['doctorLogout'] = 0;
 	}
 
 	?>
 
+	<style>
+		.bg-1 {
+			background-color: #1abc9c; /* Green */
+			color: #ffffff;}
+
+		.bg-2 {
+			background-color: #99ffcc; /* Green */
+			color: #ffffff;}
+
+		.bg-3 {
+			background-color: #80ffff; /* Green */
+			color:black;}
+	</style>
+
 </head>
 <body>
-
-	<div id="ChangedInModal" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-
-			<!-- Modal Content -->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h3 class="modal-title">Success</h3>
-				</div>
-				<div class="modal-body">
-					<h4>Saved Changes</h4>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-	<!-- Logged In Modal -->
-	<div id="loggedInModal" class="modal fade" role="dialog">
+	<!-- Doctor Logged In Modal -->
+	<div id="doctorLoggedInModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 
 			<!-- Modal Content -->
@@ -106,8 +87,8 @@ session_start();
 		</div>
 	</div>
 
-	<!-- Logged Out Modal -->
-	<div id="loggedOutModal" class="modal fade" role="dialog">
+	<!-- Doctor Logged Out Modal -->
+	<div id="doctorLoggedOutModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 
 			<!-- Modal Content -->
@@ -144,23 +125,24 @@ session_start();
 					<li class="navbar-text"> </li>
 					<li class="active"><a href="doctor.php">For Doctors</a></li>
 					<li class="navbar-text"> </li>
+
 					<?php
 
 					if (isset($_SESSION['doctorID'])) {
 
 						//logged in
 						echo '
-							<li><a href="doc/profile.php">My Profile</a></li>
+							<li><a href="doctor/profile.php">My Profile</a></li>
 							<li class="navbar-text"> </li>
-							<li><a href="../includes/doctor-logout.php">Log Out</a></li>';
-					} 
+							<li><a href="includes/doctor-logout.php">Log Out</a></li>';
+					}
                     else {
 
 						//not logged in
 						echo '
-							<li><a href="doc/login.php">Log In</a></li>
+							<li><a href="doctor/login.php">Log In</a></li>
 							<li class="navbar-text"> </li>
-							<li><a href="doc/signup.php">Sign Up</a></li>';
+							<li><a href="doctor/signup.php">Sign Up</a></li>';
 					}
 
 					?>
@@ -171,24 +153,8 @@ session_start();
 		</div>
 	</nav>
 	<nav class="navbar navbar-inverse" style="margin-bottom: 0;"></nav>
-</body>
-<head>
-	<style>
-		.bg-1 { 
-      background-color: #1abc9c; /* Green */
-      color: #ffffff;}
 
-      .bg-2 { 
-      background-color: #99ffcc; /* Green */
-      color: #ffffff;}
-      .bg-3 { 
-      background-color: #80ffff; /* Green */
-      color:black;}
-      
-</style>
-</head> 
-
-<div class="row bg-1">
+	<div class="row bg-1">
     <div class="col-xs-12 col-sm-6 cushion-left text-container">
           <h1 class="h1 col-xs-12 clear-left"><strong><basefont><em>SABS</em></basefont></strong></h1>
           <div class="clearfix"></div>
@@ -218,7 +184,7 @@ session_start();
       <br>
       <br>
       <div class="text-left">
-      <a href="doc/signup.php" class="btn btn-default  btn-lg">Sign up</a>
+      <a href="doctor/signup.php" class="btn btn-default  btn-lg">Sign up</a>
       </div>
 
     </div>
@@ -269,5 +235,6 @@ session_start();
         title="SABS for doctors" src= "imageshealthfeed.jpg" width="600" />
     </div>
   </div>
-<hr>
+	<hr>
+</body>
 </html>

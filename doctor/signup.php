@@ -1,7 +1,19 @@
+<?php
+
+require_once "../includes/connect.php";
+
+$sql1 = "select departmentID, name from department;";
+$result1 = $conn->query($sql1);
+
+$sql2 = "select buildingID, name from building;";
+$result2 = $conn->query($sql2);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>SABS - Sign Up</title>
+	<title>SABS - Doctor Sign Up</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,105 +27,107 @@
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<script src="../scripts/jquery.min.js"></script>
 	<script src="../scripts/bootstrap.min.js"></script>
+	<script src="../scripts/validate.js"></script>
 </head>
 <body>
 	<br>
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h4 style="text-align: center;">Sign Up</h4>
+		<div class="panel panel-danger" style="border-color: #d9534f;">
+			<div class="panel-heading" style="color: #ffffff; border-color: #d9534f; background-color: #d9534f;">
+				<h4 style="text-align: center;">Doctor Sign Up</h4>
 			</div>
 			<div class="panel-body">
 				<br>
-				<form class="form-horizontal" action="../includes/doctor-signup.php" method="POST">
+				<form class="form-horizontal" name="myForm" action="../includes/doctor-signup.php" onsubmit="return validateFormDoctorSignup()" method="POST">
 					<div class="form-group">
 						<label class="control-label col-md-3">First Name:</label>
 						<div class="col-md-9">
-							<input type="text" class="form-control" name="first" placeholder="Enter First Name" required>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3">Middle Name:</label>
-						<div class="col-md-9">
-							<input type="text" class="form-control" name="middle" placeholder="Enter Middle Name">
+							<input type="text" class="form-control" name="first" placeholder="Enter First Name" onblur="return validateName(this)" required>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Last Name:</label>
 						<div class="col-md-9">
-							<input type="text" class="form-control" name="last" placeholder="Enter Last Name" required>
+							<input type="text" class="form-control" name="last" placeholder="Enter Last Name" onblur="return validateName(this)">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Gender:</label>
 						<div class="col-md-9">
 							<select class="form-control" name="gender">
-								<option value="Female">Female</option>
-								<option value="Male">Male</option>
-								<option value="Other">Other</option>
+								<option value="female">Female</option>
+								<option value="male">Male</option>
+								<option value="other">Other</option>
 							</select>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Date of Birth:</label>
 						<div class="col-md-9">
-							<input type="date" class="form-control" name="dob" required>
+							<input type="date" class="form-control" name="dob" value="<?php echo date("Y-m-d"); ?>" min="1900-01-01" max="<?php echo date("Y-m-d"); ?>" required>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Phone Number:</label>
 						<div class="col-md-9">
-							<input type="number" class="form-control" name="phone" placeholder="Enter Phone Number" required>
+							<input type="number" class="form-control" name="phone" placeholder="Enter Phone Number" min="1000000000" max="9999999999" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-md-3">Email:</label>
+						<label class="control-label col-md-3">Qualifications:</label>
 						<div class="col-md-9">
-							<input type="email" class="form-control" name="email" placeholder="Enter Email" required>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3">Password:</label>
-						<div class="col-md-9">
-							<input type="password" class="form-control" name="password" placeholder="Create a Password" required>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3">Qualification:</label>
-						<div class="col-md-9">
-							<input type="text" class="form-control" name="qualification" placeholder="M.B.B.S , B.D.S" required>
+							<input type="text" class="form-control" name="qualification" placeholder="Enter Educational Qualifications" required>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Department:</label>
 						<div class="col-md-9">
 							<select class="form-control" name="department">
- 								<option value="dentist">Dentist</option>
- 								<option value="dermatologist">Dermatologist</option>
-								<option value="ayurveda">Ayurveda</option>
-								<option value="cardiologist">Cardiologist</option>
-								<option value="gastroenterolo">Gastroenterolo</option>
-								<option value="dietitian">Dietitian</option>
-								<option value="urologist">Urologist</option>
-				 				<option value="pediatrician">Pediatrician</option>
-								<option value="ent">Ear-Nose-Throat (ENT)</option>
-								<option value="homeopath">Homeopath</option>
-								<option value="gynecologist">Gynecologist</option>
-								<option value="psychiatrist">Psychiatrist</option>
+								<?php
+									while ($row = $result1->fetch_assoc()) {
+
+										echo "<option value='" . $row['departmentID'] . "'>" . $row['name'] . "</option>";
+									}
+								?>
 							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">Hospital / Clinic:</label>
+						<div class="col-md-9">
+							<select class="form-control" name="building">
+								<?php
+									while ($row = $result2->fetch_assoc()) {
+
+										echo "<option value='" . $row['buildingID'] . "'>" . $row['name'] . "</option>";
+									}
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">Experience:</label>
+						<div class="col-md-9">
+							<input type="number" class="form-control" name="experience" placeholder="Enter Experience (in years)" min="0" max="99" required>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3">Fee:</label>
 						<div class="col-md-9">
-							<input type="number" class="form-control" name="fee" placeholder="Reasonable Amount" required>
+							<input type="number" class="form-control" name="fee" placeholder="Enter Fee Amount" min="0" max="9999" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-md-3">Hospital/Clinic Name:</label>
+						<label class="control-label col-md-3">Email:</label>
 						<div class="col-md-9">
-							<input type="text" class="form-control" name="building" placeholder="Appollo" required>
+							<input type="email" class="form-control" name="email" placeholder="Enter Email" onblur="return validateEmail(this)" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">Password:</label>
+						<div class="col-md-9">
+							<input type="password" class="form-control" name="password" placeholder="Create a Password" required>
 						</div>
 					</div>
 					<div class="form-group">
@@ -137,7 +151,7 @@
 					<div class="form-group">
 						<label class="control-label col-md-3"></label>
 						<div class="col-md-9">
-							<button type="submit" class="btn btn-primary" name="submitDoctorSignup">Submit</button>
+							<button type="submit" class="btn btn-danger" name="submitDoctorSignup">Submit</button>
 						</div>
 					</div>
 					<div class="form-group">

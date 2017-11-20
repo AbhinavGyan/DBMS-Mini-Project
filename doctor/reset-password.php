@@ -29,7 +29,7 @@ if (isset($_POST['submitDoctorForgotPassword'])) {
 
 	if ($result->num_rows < 1) {
 
-		$_SESSION['invalid_email'] = 1;
+		$_SESSION['doctor_invalid_email'] = 1;
 
 		header("Location: forgot-password.php?reset=invalid");
 		exit();
@@ -53,7 +53,7 @@ if (isset($_POST['submitDoctorForgotPassword'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>SABS - Reset Password</title>
+	<title>SABS - Doctor Reset Password</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -72,8 +72,8 @@ if (isset($_POST['submitDoctorForgotPassword'])) {
 	<br>
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
+		<div class="panel panel-danger" style="border-color: #d9534f;">
+			<div class="panel-heading" style="color: #ffffff; border-color: #d9534f; background-color: #d9534f;">
 				<h4 style="text-align: center;">Reset Password</h4>
 			</div>
 			<div class="panel-body">
@@ -105,7 +105,7 @@ if (isset($_POST['submitDoctorForgotPassword'])) {
 					<div class="form-group">
 						<label class="control-label col-md-3"></label>
 						<div class="col-md-9">
-							<button type="submit" class="btn btn-primary" name="submitPersonResetPassword">Submit</button>
+							<button type="submit" class="btn btn-danger" name="submitDoctorResetPassword">Submit</button>
 						</div>
 					</div>
 				</form>

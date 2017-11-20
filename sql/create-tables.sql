@@ -39,7 +39,6 @@ create table doctor (
 	buildingID int not null,
 	experience int(2),
 	fee int(4) not null,
-	status varchar(8) not null,
 
 	primary key (doctorID)
 ) engine = InnoDB, auto_increment = 1001, default charset = utf8;
@@ -55,21 +54,9 @@ create table doctorLogin (
 	primary key (email)
 ) engine = InnoDB, default charset = utf8;
 
-create table adminLogin (
-	adminID int not null,
-	email varchar(100) not null,
-	password varchar(100) not null,
-	question varchar(100) not null,
-	answer varchar(100) not null,
-	lastLogin datetime not null,
-
-	primary key (email)
-) engine = InnoDB, default charset = utf8;
-
 create table department (
 	departmentID int auto_increment,
 	name varchar(100) not null,
-	description varchar(200),
 
 	primary key (departmentID)
 ) engine = InnoDB, auto_increment = 11, default charset = utf8;
@@ -83,9 +70,6 @@ create table building (
 	addressLine2 varchar(100),
 	addressLine3 varchar(100),
 	city varchar(50),
-	district varchar(50),
-	state varchar(50),
-	country varchar(50),
 	pin int(6),
 
 	latitude double not null,
@@ -93,24 +77,6 @@ create table building (
 
 	primary key (buildingID)
 ) engine = InnoDB, auto_increment = 101, default charset = utf8;
-
-create table timeSlot (
-	doctorID int not null,
-	slot1000 boolean not null,
-	slot1030 boolean not null,
-	slot1100 boolean not null,
-	slot1130 boolean not null,
-
-	slot1400 boolean not null,
-	slot1430 boolean not null,
-	slot1500 boolean not null,
-	slot1530 boolean not null,
-
-	slot1800 boolean not null,
-	slot1830 boolean not null,
-	slot1900 boolean not null,
-	slot1930 boolean not null
-) engine = InnoDB, default charset = utf8;
 
 create table booking (
 	bookingID int auto_increment,
@@ -157,12 +123,6 @@ alter table doctor
 alter table doctor
 	add constraint FK_building
 	foreign key (buildingID) references building (buildingID)
-	on delete restrict
-	on update cascade;
-
-alter table timeSlot
-	add constraint FK_timeSlot
-	foreign key (doctorID) references doctor (doctorID)
 	on delete restrict
 	on update cascade;
 

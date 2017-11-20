@@ -10,7 +10,7 @@ session_destroy();
 
 session_start();
 
-$_SESSION['logout'] = 1;
+$_SESSION['doctorLogout'] = 1;
 
 header("Location: ../doctor.php?logout=success");
 exit();

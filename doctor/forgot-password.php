@@ -7,7 +7,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>SABS - Forgot Password</title>
+	<title>SABS - Doctor Forgot Password</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,39 +21,40 @@ session_start();
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<script src="../scripts/jquery.min.js"></script>
 	<script src="../scripts/bootstrap.min.js"></script>
+	<script src="../scripts/validate.js"></script>
 
 	<?php
 
-	if (isset($_SESSION['invalid_email']) && $_SESSION['invalid_email']) {
+	if (isset($_SESSION['doctor_invalid_email']) && $_SESSION['doctor_invalid_email']) {
 
-		//display invalid email modal
+		//display doctor invalid email modal
 		echo '
 			<script>
 				$(document).ready(function(){
-					$("#invalidEmailModal").modal();
+					$("#doctorInvalidEmailModal").modal();
 				});
 			</script>';
-		$_SESSION['invalid_email'] = 0;
+		$_SESSION['doctor_invalid_email'] = 0;
 	}
 
-	if (isset($_SESSION['invalid_answer']) && $_SESSION['invalid_answer']) {
+	if (isset($_SESSION['doctor_invalid_answer']) && $_SESSION['doctor_invalid_answer']) {
 
-		//display invalid answer modal
+		//display doctor invalid answer modal
 		echo '
 			<script>
 				$(document).ready(function(){
-					$("#invalidAnswerModal").modal();
+					$("#doctorInvalidAnswerModal").modal();
 				});
 			</script>';
-		$_SESSION['invalid_answer'] = 0;
+		$_SESSION['doctor_invalid_answer'] = 0;
 	}
 
 	?>
 
 </head>
 <body>
-	<!-- Invalid Email Modal -->
-	<div id="invalidEmailModal" class="modal fade" role="dialog">
+	<!-- Doctor Invalid Email Modal -->
+	<div id="doctorInvalidEmailModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 
 			<!-- Modal Content -->
@@ -73,8 +74,8 @@ session_start();
 		</div>
 	</div>
 
-	<!-- Invalid Answer Modal -->
-	<div id="invalidAnswerModal" class="modal fade" role="dialog">
+	<!-- Doctor Invalid Answer Modal -->
+	<div id="doctorInvalidAnswerModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 
 			<!-- Modal Content -->
@@ -97,24 +98,24 @@ session_start();
 	<br>
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
+		<div class="panel panel-danger" style="border-color: #d9534f;">
+			<div class="panel-heading" style="color: #ffffff; border-color: #d9534f; background-color: #d9534f;">
 				<h4 style="text-align: center;">Forgot Password?</h4>
 			</div>
 			<div class="panel-body">
 				<br>
-				<form class="form-horizontal" action="reset-password.php" method="POST">
+				<form class="form-horizontal" name="myForm" action="reset-password.php" onsubmit="return validateFormEmail()" method="POST">
 					<div class="form-group">
 						<label class="control-label col-md-3">Email:</label>
 						<div class="col-md-9">
-							<input type="email" class="form-control" name="email" placeholder="Enter Email" required>
+							<input type="email" class="form-control" name="email" placeholder="Enter Email" onblur="return validateEmail(this)" required>
 						</div>
 					</div>
 					<br>
 					<div class="form-group">
 						<label class="control-label col-md-3"></label>
 						<div class="col-md-9">
-							<button type="submit" class="btn btn-primary" name="submitDoctorForgotPassword">Submit</button>
+							<button type="submit" class="btn btn-danger" name="submitDoctorForgotPassword">Submit</button>
 						</div>
 					</div>
 					<div class="form-group">

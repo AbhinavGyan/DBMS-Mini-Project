@@ -2,7 +2,7 @@
 
 session_start();
 
-if (isset($_POST['submitPersonResetPassword'])) {
+if (isset($_POST['submitDoctorResetPassword'])) {
 
 	require_once "connect.php";
 
@@ -14,7 +14,7 @@ if (isset($_POST['submitPersonResetPassword'])) {
 	//check for empty fields
 	if (empty($answer) || empty($password)) {
 
-		header("Location: ../doc/forgot-password.php?reset=empty");
+		header("Location: ../doctor/forgot-password.php?reset=empty");
 		exit();
 	}
 
@@ -24,9 +24,9 @@ if (isset($_POST['submitPersonResetPassword'])) {
 
 	if ($hashedAnswer !== $_SESSION['answer']) {
 
-		$_SESSION['invalid_answer'] = 1;
+		$_SESSION['doctor_invalid_answer'] = 1;
 
-		header("Location: ../doc/forgot-password.php?reset=invalid_answer");
+		header("Location: ../doctor/forgot-password.php?reset=invalid_answer");
 		exit();
 	}
 
@@ -39,7 +39,7 @@ if (isset($_POST['submitPersonResetPassword'])) {
 	if ($conn->query($sql) !== TRUE) {
 
 		//echo "Error: " . $conn->error;
-		header("Location: ../doc/forgot-password.php?reset=error");
+		header("Location: ../doctor/forgot-password.php?reset=error");
 		exit();
 	}
 
@@ -57,7 +57,7 @@ if (isset($_POST['submitPersonResetPassword'])) {
 
 session_start();
 
-$_SESSION['reset'] = 1;
+$_SESSION['doctorReset'] = 1;
 
-header("Location: ../doc/login.php?reset=success");
+header("Location: ../doctor/login.php?reset=success");
 exit();
