@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once "includes/connect.php";
 
 ?>
@@ -9,10 +9,10 @@ require_once "includes/connect.php";
 <head>
     <title>LOGIN</title>
        <meta charset="utf-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1">
-       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	   <meta name="viewport" content="width=device-width, initial-scale=1">    
+       <link rel="stylesheet" href="css/bootstrap.min.css">
+	    <script src="scripts/jquery.min.js"></script>
+	    <script src="scripts/bootstrap.min.js"></script>
 </head>
 <style>
 .b{padding-left:15px;
@@ -37,26 +37,51 @@ float:right;}
 
 </style>
 <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbarTop">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.php">Smart Appointment Booking System</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbarTop">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="active"><a href="index.php">For Patients</a></li>
+					<li class="navbar-text"> </li>
 
-	<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
-      </button>
-      <a class="navbar-brand B" href="#" >S.A.B.S</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-      <li><a href="index.html"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>    
-    </div>
-  </div>
-</nav>
+					<?php
+
+					if (isset($_SESSION['personID'])) {
+
+						//logged in
+						echo '
+							<li><a href="person/profile.php">My Profile</a></li>
+							<li class="navbar-text"> </li>
+							<li><a href="includes/person-logout.php">Log Out</a></li>';
+					} 
+                    else {
+
+						//not logged in
+						echo '
+							<li><a href="person/login.php">Log In</a></li>
+							<li class="navbar-text"> </li>
+							<li><a href="person/signup.php">Sign Up</a></li>';
+					}
+
+					?>
+
+					<li class="navbar-text"> </li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<nav class="navbar navbar-inverse" style="margin-bottom: 0;"></nav>
 
 
-
+    
 	<div class="container a">
 	<div class="row">
 		<div class="col-sm-9">
@@ -99,7 +124,7 @@ float:right;}
                     ?>
                     <div class="media thumb">
                         <div class="media-body b">
-                           <h4 class="media-heading"> <?php echo $firstName;?> <?php echo $lastName;?></h4>
+                           <h4 class="media-heading"><b> <?php echo $firstName;?> <?php echo $lastName;?></b></h4>
                            <p>Gender : <?php echo $gender;?></p>
 		                   <p>Qualification :  <?php echo $qualification;?></p>
 		                   <p>Fee : <?php echo $fee;?></p>

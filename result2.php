@@ -1,10 +1,15 @@
+<?php
+
+session_start();
+
+?>
 <html>
 <head><title>View Doctor</title>
       <meta charset="utf-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1">
-       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	   <meta name="viewport" content="width=device-width, initial-scale=1">    
+       <link rel="stylesheet" href="css/bootstrap.min.css">
+	    <script src="scripts/jquery.min.js"></script>
+	    <script src="scripts/bootstrap.min.js"></script>
 </head>
 <style>
 .b{padding-left:15px;
@@ -30,6 +35,49 @@ float:right;}
 </style>
 <body>
 
+ <nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbarTop">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.php">Smart Appointment Booking System</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbarTop">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="active"><a href="index.php">For Patients</a></li>
+					<li class="navbar-text"> </li>
+
+					<?php
+
+					if (isset($_SESSION['personID'])) {
+
+						//logged in
+						echo '
+							<li><a href="person/profile.php">My Profile</a></li>
+							<li class="navbar-text"> </li>
+							<li><a href="includes/person-logout.php">Log Out</a></li>';
+					} 
+                    else {
+
+						//not logged in
+						echo '
+							<li><a href="person/login.php">Log In</a></li>
+							<li class="navbar-text"> </li>
+							<li><a href="person/signup.php">Sign Up</a></li>';
+					}
+
+					?>
+
+					<li class="navbar-text"> </li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<nav class="navbar navbar-inverse" style="margin-bottom: 0;"></nav>
+<br><br>
 <?php
 
 require_once "includes/connect.php"; 
@@ -43,7 +91,6 @@ if($result->num_rows === 1) {
     while($row = $result->fetch_assoc()) {
         
         $firstName = $row["firstName"];
-        $middleName = $row["middleName"];
         $lastName = $row["lastName"];
         $gender = $row["gender"]; 
         $qualification = $row["qualification"];
@@ -53,7 +100,7 @@ if($result->num_rows === 1) {
     ?>
     <div class="media thumb">
         <div class="media-body b">
-           <h4 class="media-heading"> <?php echo $firstName;?> <?php echo $middleName;?> <?php echo $lastName;?></h4>
+           <h4 class="media-heading"><b> <?php echo $firstName;?> <?php echo $lastName;?></b></h4>
            <p>Gender : <?php echo $gender;?></p>
            <p>Qualification :  <?php echo $qualification;?></p>
            <p>Contact :  <?php echo $phoneNumber;?></p>
@@ -92,7 +139,7 @@ else {
 $conn->close();
 ?>
 <br>
-<a href="index.html">Back to Main Page</a>
+<a href="index.php">Back to Main Page</a>
 
 </body>
 </html>
