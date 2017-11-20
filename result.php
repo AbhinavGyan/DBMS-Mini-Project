@@ -1,16 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "adirocks!?";
-$dbname = "sabs";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password,$dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+require_once "includes/connect.php";
 
 ?>
 
@@ -115,7 +105,7 @@ float:right;}
 		                   <p>Fee : <?php echo $fee;?></p>
 			
 		    	            <a href="result2.php?doctorID=<?php echo $doctorID; ?>"><span class="btn btn-info">
-	                       Book Now &rsaquo;&rsaquo;
+	                       VIEW &rsaquo;&rsaquo;
 	                        </span></a>
                         </div>
 	  
@@ -146,7 +136,7 @@ float:right;}
                 $conn->close();
            ?>
                 <br>
-        <a href="index.html">Back to Main Page</a>
+        <a href="index.php">Back to Main Page</a>
 
 </body>
 </html>

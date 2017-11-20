@@ -192,7 +192,7 @@ session_start();
 					<div class="input-group input-group-lg">
 						<form>
 							<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-							<input type="text" class="form-control" name="searchText" placeholder="Search Doctors">
+							<input type="text" class="form-control" name="searchText" placeholder="Search by Department...">
 							<div class="input-group-btn">
 								<button type="submit" class="btn btn-default">
 									<i class="glyphicon glyphicon-search"></i>
