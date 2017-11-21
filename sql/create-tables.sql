@@ -149,3 +149,19 @@ alter table history
 	foreign key (doctorID) references doctor (doctorID)
 	on delete restrict
 	on update cascade;
+
+delimiter .
+
+create event eventHistory
+on schedule every 24 hour
+starts '2017-11-21 00:00:01'
+do begin
+	insert into history
+	select * from booking
+	where appointmentDate < curdate();
+
+	delete from booking
+	where appointmentDate < curdate();
+end.
+
+delimiter ;

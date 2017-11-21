@@ -8,11 +8,11 @@ require_once "includes/connect.php";
 <html lang="en">
 <head>
     <title>LOGIN</title>
-       <meta charset="utf-8">
-	   <meta name="viewport" content="width=device-width, initial-scale=1">    
-       <link rel="stylesheet" href="css/bootstrap.min.css">
-	    <script src="scripts/jquery.min.js"></script>
-	    <script src="scripts/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="scripts/jquery.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
 </head>
 <style>
 .b{padding-left:15px;
@@ -32,8 +32,7 @@ color: #eeeeee;
 background-color: #211f22;
 text-allign:centre;
 }
-.btn-info{margin-right:10px;
-float:right;}
+.btn-i{ margin-right:25px; margin-bottom: 25px;float:right;}
 
 </style>
 <body>
@@ -90,20 +89,26 @@ float:right;}
 
                 $x = $_GET["searchText"];
 
-                $sql1 = "select departmentID from department where name = '$x';";
-                $result1 = mysqli_query($conn,$sql1);
+                $sql1 = "select departmentID, name from department where name like '$x';";
+                $result1 = $conn->query($sql1);
 
-                if($result1->num_rows === 1) {
+                if($result1->num_rows > 0) {
                     while($row = $result1->fetch_assoc()) {
                         $departmentID = $row['departmentID'];
-                    }
-                //$departmentID = $row['departmentID'];
-                }
-                else {
-                    echo "0 result ";
-                }
+                        $departmentName = $row['name'];
 
-                $sql2 = "select * from doctor where departmentID = '$departmentID';";
+                        $latitude_loc = $_GET['latitude'];
+                        $longitude_loc = $_GET['longitude'];
+                    
+
+                $sql2 = "   SELECT doctor.*, building.*, department.*,
+                            sqrt((building.latitude-$latitude_loc)*(building.latitude-$latitude_loc)+(building.longitude-$longitude_loc)*(building.longitude-$longitude_loc))*100 AS distance
+                            FROM doctor, building, department
+                            WHERE doctor.buildingID = building.buildingID
+                            AND doctor.departmentID = department.departmentID
+                            AND department.departmentID = '$departmentID'
+                            ORDER BY distance;
+                        ";
                 $result2 = mysqli_query($conn,$sql2);
 
                 //$result = mysqli_query("select * from doctor where department = '$x';");
@@ -117,29 +122,59 @@ float:right;}
                     while($row = $result2->fetch_assoc()) {
                         $firstName = $row["firstName"];
                         $lastName = $row["lastName"];
-                        $gender = $row["gender"]; 
+                        $experience = $row["experience"]; 
                         $qualification = $row["qualification"];
                         $fee = $row["fee"];
                         $doctorID = $row["doctorID"];
+                        $distance = $row["distance"];
+                        $distance = floor($distance*10)/10;
                     ?>
                     <div class="media thumb">
                         <div class="media-body b">
-                           <h4 class="media-heading"><b> <?php echo $firstName;?> <?php echo $lastName;?></b></h4>
-                           <p>Gender : <?php echo $gender;?></p>
-		                   <p>Qualification :  <?php echo $qualification;?></p>
-		                   <p>Fee : <?php echo $fee;?></p>
-			
-		    	            <a href="result2.php?doctorID=<?php echo $doctorID; ?>"><span class="btn btn-info">
-	                       VIEW &rsaquo;&rsaquo;
-	                        </span></a>
+                            <div class="row"><div class="col-md-12">
+                                <h3 class="media-heading">
+                                <?php echo "Dr. ".$firstName." ".$lastName;?></h3>
+                                <br>
+                            </div></div>
+                            <div class="row">
+                            
+                            <div class="col-md-2"><h4>
+                           	<p>Qualification: </p>
+                            <p>Department: </p>
+		                    <p>Experience: </p>
+                            <p>Fee: </p>
+                            <p>Distance: </p></h4>
+                            </div>
+
+                            <div class="col-md-8"><h4>
+                            <p><?php echo $qualification;?></p>
+                            <p><?php echo $departmentName;?></p>
+                            <p><?php echo $experience." years";?></p>
+                            <p><?php echo $fee;?></p>
+                            <p><?php echo $distance." KM";?></p></h4>
+                            </div>
+                            <div class="col-md-2">
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <a href="result2.php?doctorID=<?php echo $doctorID; ?>"><span class="btn btn-i btn-danger">
+                            View &rsaquo;&rsaquo;
+                            </span></a>
+                            </div>
+                            </div>
                         </div>
-	  
                     </div>
+                    <br>
            <?php   } 
                }
-               else {
-                    echo "0 results";
                }
+                }
+                else {
+                    echo "<h4>Your search - '$x' - did not match any doctors.</h4>";
+                }
                 
                 /*$result = mysql_query("SELECT number FROM one");
 
@@ -160,8 +195,6 @@ float:right;}
                 */
                 $conn->close();
            ?>
-                <br>
-        <a href="index.php">Back to Main Page</a>
 
 </body>
 </html>

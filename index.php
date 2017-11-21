@@ -22,6 +22,20 @@ session_start();
 	<script src="scripts/jquery.min.js"></script>
 	<script src="scripts/bootstrap.min.js"></script>
 
+	<script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(redirectToPosition);
+            } else { 
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function redirectToPosition(position) {
+            window.location='result.php?latitude='+position.coords.latitude+'&longitude='+position.coords.longitude+'&searchText='+document.forms["search1"]["searchText"].value;
+        }
+    </script>
+
 	<?php
 
 	if(isset($_GET['booking']) && $_GET['booking'] == 'error') {
@@ -70,6 +84,7 @@ session_start();
 
 </head>
 <body>
+
 	<!-- Failed Booking Modal -->
 	<div id="bookingFailModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
@@ -239,7 +254,7 @@ session_start();
 		<br>
 		<h1 style="color: White; text-align: center;">Find and Book</h1>
 		<br>
-		<form name="search1" action="result.php">
+		<!--<form name="search1" action="result.php">-->
 			<div class="container-fluid">
 				<div class="col-md-2"></div>
 				<div class="col-md-2">
@@ -253,21 +268,21 @@ session_start();
 				</div>
 				<div class="col-md-6">
 					<div class="input-group input-group-lg">
-						<form>
-							<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-							<input type="text" class="form-control" name="searchText" placeholder="Search by Department...">
-							<div class="input-group-btn">
-								<button type="submit" class="btn btn-default">
-									<i class="glyphicon glyphicon-search"></i>
-								</button>
-							</div>
+						<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+						<form name="search1">
+						<input type="text" class="form-control input-lg" name="searchText" placeholder="Search by Department...">
 						</form>
+						<div class="input-group-btn">
+							<button type="submit" class="btn btn-default" onclick="getLocation()">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</div>
 					</div>
 					<br>
 				</div>
 				<div class="col-md-2"></div>
 			</div>
-		</form>
+		<!--</form>-->
 	</div>
 	<!-- Search Image -->
 	<div class="carousel-inner">
