@@ -24,7 +24,7 @@ session_start();
 
 	<?php
 
-	if($_GET['cancel'] == error) {
+	if(isset($_GET['cancel']) && $_GET['cancel'] == 'error') {
 		echo '
 			<script>
 				$(document).ready(function(){
@@ -33,7 +33,7 @@ session_start();
 			</script>';
 	}
 
-    if($_GET['cancel'] == success) {
+    if(isset($_GET['cancel']) && $_GET['cancel'] == 'success') {
 		echo '
 			<script>
 				$(document).ready(function(){

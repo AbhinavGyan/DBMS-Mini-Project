@@ -1,19 +1,21 @@
 <?php
 
 session_start();
+
 if (isset($_POST['bookedSlot'])) {
     
     require_once "connect.php";
 
     $slot=$conn->real_escape_string($_POST['slot']);
+
 if($slot=="slot1" || $slot=="slot2" || $slot=="slot3" || $slot=="slot4" || $slot=="slot5" || $slot=="slot6" || $slot=="slot7" || $slot=="slot8")
-	$appointmentdate = date("d-m-Y");
+	$appointmentdate = date("Y-m-d");
 
 if($slot=="slot9" || $slot=="slot10" || $slot=="slot11" || $slot=="slot12" || $slot=="slot13" || $slot=="slot14" || $slot=="slot15" || $slot=="slot16")
-	$appointmentdate = date("d-m-Y", strtotime("+1 days"));
+	$appointmentdate = date("Y-m-d", strtotime("+1 days"));
 
 if($slot=="slot17" || $slot=="slot18" || $slot=="slot19" || $slot=="slot20" || $slot=="slot21" || $slot=="slot22" || $slot=="slot23" || $slot=="slot24")
-	$appointmentdate = date("d-m-Y", strtotime("+2 days"));
+	$appointmentdate = date("Y-m-d", strtotime("+2 days"));
 
 if($slot=="slot1" || $slot=="slot9" || $slot=="slot17")
 	$appointmenttime="10:00:00";
@@ -65,8 +67,8 @@ if($slot=="slot8" || $slot=="slot16" || $slot=="slot24")
     //start transaction
 	$conn->autocommit(FALSE);
 
-    $_SESSION['appointmentDate'] = $appointmentdate;
-    $_SESSION['slot'] = $appointmenttime;    
+    $_SESSION['appointmentdate'] = $appointmentdate;
+    $_SESSION['appointmenttime'] = $appointmenttime;    
 
     $sql2 = "select bookingID from booking where appointmentDate = '$appointmentdate' and personID = 
              '$personID' and doctorID = '$doctorID' and slot = '$appointmenttime'";

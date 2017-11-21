@@ -24,7 +24,7 @@ session_start();
 
 	<?php
 
-	if($_GET['booking'] == 'error') {
+	if(isset($_GET['booking']) && $_GET['booking'] == 'error') {
 		echo '
 			<script>
 				$(document).ready(function(){
@@ -33,7 +33,7 @@ session_start();
 			</script>';
 	}
 
-    if($_GET['booking'] == 'success') {
+    if(isset($_GET['booking']) && $_GET['booking'] == 'success') {
 		echo '
 			<script>
 				$(document).ready(function(){
