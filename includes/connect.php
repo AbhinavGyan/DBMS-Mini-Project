@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "adirocks!?";
+$password = "";
 $dbname = "SABS";
 
 //create connection

@@ -9,7 +9,7 @@ if(!isset($_SESSION['login']) && !($_SESSION['login'])) {
 		header("Location: person/login.php?notLogged=1");
 		exit();
 }
-
+$_SESSION['bookedDoctor'] = $_GET['doctorID'];
 ?>
 
 <html>

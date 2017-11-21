@@ -24,6 +24,24 @@ session_start();
 
 	<?php
 
+	if($_GET['cancel'] == error) {
+		echo '
+			<script>
+				$(document).ready(function(){
+					$("#errorCancelModal").modal();
+				});
+			</script>';
+	}
+
+    if($_GET['cancel'] == success) {
+		echo '
+			<script>
+				$(document).ready(function(){
+					$("#successfulCancelModal").modal();
+				});
+			</script>';
+	}
+
 	if (isset($_SESSION['doctorLogin']) && $_SESSION['doctorLogin']) {
 
 		//display doctor logged in modal
@@ -66,6 +84,49 @@ session_start();
 
 </head>
 <body>
+	<!-- Error Cancel  Modal -->
+	<div id="errorCancelModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal Content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">Error!</h3>
+				</div>
+				<div class="modal-body">
+					<h4>Error in Cancelling appointment!</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- Successful Cancel  Modal -->
+	<div id="successfulCancelModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal Content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">Success!</h3>
+				</div>
+				<div class="modal-body">
+					<h4>Appointment Cancelled!</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 	<!-- Doctor Logged In Modal -->
 	<div id="doctorLoggedInModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
