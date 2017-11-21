@@ -41,6 +41,7 @@ session_start();
 				});
 			</script>';
 	}
+	
 	if (isset($_SESSION['login']) && $_SESSION['login']) {
 
 		//display logged in modal
@@ -103,8 +104,8 @@ session_start();
 				<div class="modal-body">
 					<h4>You have booked an appointment!</h4>
                     <h4>Your booking ID is <?php echo $_SESSION['bookingID']; ?></h4>
-					<h4>Appointment date is <?php echo $_SESSION['appointmentDate']; ?></h4>
-					<h4>Timing : <?php echo $_SESSION['slot']; ?></h4>
+					<h4>Appointment date is <?php echo $_SESSION['appointmentdate']; ?></h4>
+					<h4>Timing : <?php echo $_SESSION['appointmenttime']; ?></h4>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
