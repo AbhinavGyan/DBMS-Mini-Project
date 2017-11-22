@@ -296,6 +296,10 @@ session_start();
         title="SABS for doctors" src= "imageshealthfeed.jpg" width="600" />
     </div>
   </div>
-	<hr>
+
+	<?php
+		include_once 'includes/footer.php';
+	?>
+
 </body>
 </html>

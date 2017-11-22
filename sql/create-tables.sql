@@ -85,7 +85,7 @@ create table booking (
 	personID int not null,
 	doctorID int not null,
 	slot time not null,
-	bookingStatus varchar(8) not null,
+	bookingStatus varchar(9) not null,
 
 	primary key (bookingID)
 ) engine = InnoDB, auto_increment = 36890001, default charset = utf8;
@@ -97,7 +97,7 @@ create table history (
 	personID int not null,
 	doctorID int not null,
 	slot time not null,
-	bookingStatus varchar(8) not null,
+	bookingStatus varchar(9) not null,
 
 	primary key (bookingID)
 ) engine = InnoDB, default charset = utf8;

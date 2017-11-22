@@ -261,7 +261,7 @@ session_start();
 					<div class="input-group input-group-lg">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
 						<select class="form-control" id="selectCity">
-							<option>Mysore</option>
+							<option>Mysuru</option>
 						</select>
 					</div>
 					<br>
@@ -290,5 +290,9 @@ session_start();
 			<img src="images/search.png" alt="Search Image">
 		</div>
 	</div>
+
+	<?php
+		include_once 'includes/footer.php';
+	?>
 </body>
 </html>

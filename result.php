@@ -36,7 +36,8 @@ text-allign:centre;
 
 </style>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <!-- Bootstrap Navigation Bar Top -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbarTop">
@@ -48,7 +49,9 @@ text-allign:centre;
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbarTop">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="index.php">For Patients</a></li>
+					<li><a href="index.php">For Patients</a></li>
+					<li class="navbar-text"> </li>
+					<li><a href="doctor.php">For Doctors</a></li>
 					<li class="navbar-text"> </li>
 
 					<?php
@@ -79,8 +82,7 @@ text-allign:centre;
 	</nav>
 	<nav class="navbar navbar-inverse" style="margin-bottom: 0;"></nav>
 
-
-    
+    <div class="container-fluid">
 	<div class="container a">
 	<div class="row">
 		<div class="col-sm-9">
@@ -150,7 +152,7 @@ text-allign:centre;
                             <p><?php echo $qualification;?></p>
                             <p><?php echo $departmentName;?></p>
                             <p><?php echo $experience." years";?></p>
-                            <p><?php echo $fee;?></p>
+                            <p><?php echo "&#8377; ".$fee;?></p>
                             <p><?php echo $distance." KM";?></p></h4>
                             </div>
                             <div class="col-md-2">
@@ -195,6 +197,9 @@ text-allign:centre;
                 */
                 $conn->close();
            ?>
-
+           </div></div></div></div>
+    <?php
+        include_once 'includes/footer.php';
+    ?>
 </body>
 </html>

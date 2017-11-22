@@ -2,104 +2,221 @@
 
 session_start();
 
-
 require_once "../includes/connect.php";
+
+if (!isset($_SESSION['doctorID'])) {
+
+	header("Location: ../doctor.php");
+	exit();
+}
+
+$sql_doctor = $_SESSION['doctorID'];
+$sql = "select * from doctor where doctorID = '$sql_doctor';";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$first = $row['firstName'];
+$last = $row['lastName'];
+$phone = $row['phoneNumber'];
+
+$sql2 = "select * from booking where doctorID = '$sql_doctor';";
+$result2 = $conn->query($sql2);
+
+$sql3="select * from history where doctorID = '$sql_doctor';";
+$result3 = $conn->query($sql3);
 
 ?>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Profile</title>
-        <meta charset="utf-8">
-	   <meta name="viewport" content="width=device-width, initial-scale=1">    
-       <link rel="stylesheet" href="../css/bootstrap.min.css">
-	    <script src="../scripts/jquery.min.js"></script>
-	    <script src="../scripts/bootstrap.min.js"></script>
+	<title>SABS - Doctor Profile</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap and jQuery standard library files --><!--
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+	<!-- CAUTION: DO NOT EDIT THESE FILES -->
+	<!-- Offline version of the above files -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<script src="../scripts/jquery.min.js"></script>
+	<script src="../scripts/bootstrap.min.js"></script>
+
+
+
 </head>
-<style>
-.b{padding-left:15px;
-padding-top:10px;}
-
-.c{padding:3px;}
-.a{margin-top:55px;}
-
-.thumb{margin-top:2px;
-border:1px solid black;
-background-color:rgb(240, 240, 240);
-}
- #footer{ margin-top:3px;
-padding:10px;	
-border-top:1px solid DodgerBlue;
-color: #eeeeee;
-background-color: #211f22;
-text-allign:centre;
-}
-.btn-info{margin-right:10px;
-float:right;}
-
-</style>
 <body>
+	
 
-<div class="container a">
-	<div class="row">
-		<div class="col-sm-9">
+	<!-- Bootstrap Navigation Bar Top -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbarTop">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="../index.php">Smart Appointment Booking System</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbarTop">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="../index.php">For Patients</a></li>
+					<li class="navbar-text"> </li>
+					<li><a href="../doctor.php">For Doctors</a></li>
+					<li class="navbar-text"> </li>
 
-            <?php
-    
-                $doctorID = $_SESSION['doctorID'];
+					<?php
 
-                $sql1 = "select * from booking where doctorID = $doctorID and bookingStatus = 'confirm';";
-                $result1 = mysqli_query($conn,$sql1);
+					if (isset($_SESSION['doctorID'])) {
 
-                if($result1->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result1->fetch_assoc()) {
-                        $bookingID = $row["bookingID"];
-                        $bookingDate = $row["bookingDate"];
-                        $appointmentDate = $row["appointmentDate"]; 
-                        $slot = $row["slot"];
-                        $bookingStatus = $row["bookingStatus"];
-                    ?>
-                    <div class="media thumb">
-                        <div class="media-body b">
-                           <h4 class="media-heading"><b>Booking ID : <?php echo $bookingID;?></b></h4>
-                           <p>Booking Date : <?php echo $bookingDate;?></p>
-		                   <p>Appointment Date :  <?php echo $appointmentDate;?></p>
-		                   <p>slot : <?php echo $slot;?></p>
-                            <p>Booking Status : <?php echo $bookingStatus; ?></p>
+						//logged in
+						echo '
+							<li class="active"><a href="profile.php">My Profile</a></li>
+							<li class="navbar-text"> </li>
+							<li><a href="../includes/doctor-logout.php">Log Out</a></li>';
+					}
 
-                            <a href="../includes/doctor-cancel.php?bookingID=<?php echo $bookingID; ?>"><span class="btn btn-info">
-	                       Cancel &rsaquo;&rsaquo;
-	                        </span></a>
-                        </div>
-                    </div>
-           <?php   } 
-               }
-               else {
-                    echo "0 results";
-               }
-                
-                /*$result = mysql_query("SELECT number FROM one");
+					?>
 
-                $array = array();
+					<li class="navbar-text"> </li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<nav class="navbar navbar-inverse" style="margin-bottom: 0;"></nav>
 
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = mysql_fetch_assoc($result)) {
-                        $array[] = $row;
-	                    echo $row['number'];
-                    }
-	                print_r($array);
-	                echo $array[0];
-                } 
-                else {
-                    echo "0 results";
-                }
-                */
-                $conn->close();
-           ?>
-                <br>
-        <a href="../index.php">Back to Main Page</a>
+	<br>
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<div class="panel panel-danger" style="border-color: #d9534f;">
+			<div class="panel-heading" style="color: #ffffff; border-color: #d9534f; background-color: #d9534f;">
+				<h4 style="text-align: center;">Your Profile</h4>
+			</div>
+			<div class="panel-body">
 
-</body>
-</html>
+				<p align="right"><?php echo "Last Login: ".$_SESSION['lastLogin'] ?></p>
+
+				<h2><?php echo "Welcome Dr. ".$first." ".$last ?></h2>
+				<div class="row">
+
+				<div class="col-md-3">
+				<h4>Email: </h4>
+				<h4>Phone Number: </h4>
+				</div>
+
+				<div class="col-md-9">
+				<h4><?php echo $_SESSION['email'] ?></h4>
+				<h4><?php echo $phone ?></h4>
+				</div>
+
+				</div>
+				<hr>
+				<div>
+				<?php
+					if ($result2->num_rows < 1) {
+
+						echo "<h2>No Upcoming Appointments!</h2>";
+					}
+					else {
+						echo '
+				  <h2>Your Upcoming Appointments</h2>
+				              
+				  <table class="table table-hover">
+				    <thead>
+				      <tr>
+				        <th>Booking ID</th>
+				        <th>Appointment Date</th>
+				        <th>Time</th>
+				        <th>Patient Name</th>
+				        <th>Status</th>
+				        <th>Manage</th>
+				      </tr>
+				    </thead>
+				    <tbody>';
+
+				    while ($row=$result2->fetch_assoc()) {
+				    	$sql_person = $row['personID'];
+				    	$sql4 = "select firstName, lastName from person where personID = '$sql_person';";
+						$result4 = $conn->query($sql4);
+						$row2 = $result4->fetch_assoc();
+				    
+				    echo "<tr>
+				        <td>".$row['bookingID']."</td>
+				        <td>".$row['appointmentDate']."</td>
+				        <td>".$row['slot']."</td>
+				        <td>".$row2['firstName']." ".$row2['lastName']."</td>
+				        <td>".$row['bookingStatus']."</td>
+				        <td>";
+				    if ($row['bookingStatus'] === 'Booked') {
+				    
+				    echo "<a href='../includes/doctor-cancel.php?bookingID=".$row['bookingID']."'>
+				    	<span class='btn btn-danger'>Cancel</span></a>";
+				    }
+				    else if ($row['bookingStatus'] === 'Cancelled') {
+				    
+				    echo "<a>
+				    	<span class='btn btn-danger disabled'>Cancel</span></a>";
+				    }
+				    echo "</td>
+				      </tr>";
+				}
+				}
+				    ?>
+				    </tbody>
+				  </table>
+				</div>
+
+                <div>
+                <?php
+					if ($result3->num_rows < 1) {
+
+						echo "<h2>No Past Appointments!</h2>";
+					}
+					else {
+						echo '
+				  <h2>Your Past Appointments</h2>
+				              
+				  <table class="table table-hover">
+				    <thead>
+				      <tr>
+				        <th>Booking ID</th>
+				        <th>Appointment Date</th>
+				        <th>Time</th>
+				        <th>Patient Name</th>
+				        <th>Status</th>
+				      </tr>
+				    </thead>
+				    <tbody>';
+
+				    while ($row=$result3->fetch_assoc()) {
+				    	$sql_person = $row['personID'];
+				    	$sql5 = "select firstName, lastName from person where personID = '$sql_person';";
+						$result5 = $conn->query($sql5);
+						$row2 = $result5->fetch_assoc();
+				    
+				    echo "<tr>
+				        <td>".$row['bookingID']."</td>
+				        <td>".$row['appointmentDate']."</td>
+				        <td>".$row['slot']."</td>
+				        <td>".$row2['firstName']." ".$row2['lastName']."</td>
+				        <td>".$row['bookingStatus']."</td>
+				      </tr>";
+				    }
+					}
+				    ?>  
+				    </tbody>
+				  </table>
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3"></div>
+
+	</body>
+	</html>

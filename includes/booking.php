@@ -49,7 +49,7 @@ if($slot=="slot8" || $slot=="slot16" || $slot=="slot24")
 
 
     $sql = "insert into booking(bookingDate, appointmentDate, personID, doctorID, slot, bookingStatus)
-            values(curdate(), '$appointmentdate', '$personID', '$doctorID', '$appointmenttime', 'Confirm')";
+            values(curdate(), '$appointmentdate', '$personID', '$doctorID', '$appointmenttime', 'Booked')";
 	
     if ($conn->query($sql) !== TRUE) {
         
