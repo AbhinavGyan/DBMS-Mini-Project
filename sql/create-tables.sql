@@ -150,6 +150,8 @@ alter table history
 	on delete restrict
 	on update cascade;
 
+set global event_scheduler = on;
+
 delimiter .
 
 create event eventHistory
