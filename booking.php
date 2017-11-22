@@ -29,61 +29,54 @@ $_SESSION['bookedDoctor'] = $_GET['doctorID'];
 	<div class="col-md-6">
 		<div class="panel panel-danger" style="border-color: #d9534f;">
 			<div class="panel-heading" style="color: #ffffff; border-color: #d9534f; background-color: #d9534f;">
-				<h4 style="text-align: center;">Book</h4>
+				<h4 style="text-align: center;">Select Time Slot</h4>
 			</div>
 			<div class="panel-body">
 				<br>
 				<form class="form-horizontal" name="myForm" action="includes/booking.php" method="POST">
 					<div class="form-group">
-						<label class="control-label col-md-3"><?php echo date("d-m-Y"); ?> :</label>
+						<label class="control-label col-md-3"><?php echo date('d/m/Y', strtotime("+1 days")); ?> :</label>
 						<div class="col-md-9">
-							<input type="radio" name="slot" value="slot1" checked>10:00&nbsp;&nbsp;
-  							<input type="radio" name="slot" value="slot2">11:00&nbsp;&nbsp;
-  							<input type="radio" name="slot" value="slot3">12:00&nbsp;&nbsp;  
-							<input type="radio" name="slot" value="slot4">14:00&nbsp;&nbsp;  
-							<input type="radio" name="slot" value="slot5">15:00&nbsp;&nbsp;  
-  							<input type="radio" name="slot" value="slot6">16:00&nbsp;
-  							<input type="radio" name="slot" value="slot7">17:00&nbsp;
-							<input type="radio" name="slot" value="slot8">20:00
+							<input type="radio" name="slot" value="slot1" checked> 09:00&nbsp;&nbsp;
+  							<input type="radio" name="slot" value="slot2"> 10:00&nbsp;&nbsp;
+  							<input type="radio" name="slot" value="slot3"> 11:00&nbsp;&nbsp;  
+							<input type="radio" name="slot" value="slot4"> 12:00&nbsp;&nbsp;  
+							<input type="radio" name="slot" value="slot5"> 17:00&nbsp;&nbsp;  
+  							<input type="radio" name="slot" value="slot6"> 18:00&nbsp;
+  							<input type="radio" name="slot" value="slot7"> 19:00&nbsp;
+							<input type="radio" name="slot" value="slot8"> 20:00
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-md-3"><?php echo date('d-m-Y', strtotime("+1 days")); ?> :</label>
+						<label class="control-label col-md-3"><?php echo date('d/m/Y', strtotime("+2 days")); ?> :</label>
 						<div class="col-md-9">
-							<input type="radio" name="slot" value="slot9">10:00&nbsp;&nbsp;
-  							<input type="radio" name="slot" value="slot10">11:00&nbsp;&nbsp;
-  							<input type="radio" name="slot" value="slot11">12:00&nbsp;&nbsp;
-							<input type="radio" name="slot" value="slot12">14:00&nbsp;&nbsp;
-							<input type="radio" name="slot" value="slot13">15:00&nbsp;&nbsp;
-  							<input type="radio" name="slot" value="slot14">16:00&nbsp;
-  							<input type="radio" name="slot" value="slot15">17:00&nbsp;
-							<input type="radio" name="slot" value="slot16">20:00  
+							<input type="radio" name="slot" value="slot9"> 09:00&nbsp;&nbsp;
+  							<input type="radio" name="slot" value="slot10"> 10:00&nbsp;&nbsp;
+  							<input type="radio" name="slot" value="slot11"> 11:00&nbsp;&nbsp;
+							<input type="radio" name="slot" value="slot12"> 12:00&nbsp;&nbsp;
+							<input type="radio" name="slot" value="slot13"> 17:00&nbsp;&nbsp;
+  							<input type="radio" name="slot" value="slot14"> 18:00&nbsp;
+  							<input type="radio" name="slot" value="slot15"> 19:00&nbsp;
+							<input type="radio" name="slot" value="slot16"> 20:00  
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-md-3"><?php echo date('d-m-Y', strtotime("+2 days")); ?> :</label>
+						<label class="control-label col-md-3"><?php echo date('d/m/Y', strtotime("+3 days")); ?> :</label>
 						<div class="col-md-9">
-							<input type="radio" name="slot" value="slot17">10:00&nbsp;&nbsp;
-  							<input type="radio" name="slot" value="slot18">11:00&nbsp;&nbsp;
-  							<input type="radio" name="slot" value="slot19">12:00&nbsp;&nbsp;
-							<input type="radio" name="slot" value="slot20">14:00&nbsp;&nbsp;
-							<input type="radio" name="slot" value="slot21">15:00&nbsp;&nbsp;
-  							<input type="radio" name="slot" value="slot22">16:00&nbsp;
-  							<input type="radio" name="slot" value="slot23">17:00&nbsp;
-							<input type="radio" name="slot" value="slot24">20:00  
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3"></label>
-						<div class="col-md-9">
-							<button type="submit" class="btn btn-danger" name="bookedSlot">Book</button>
+							<input type="radio" name="slot" value="slot17"> 09:00&nbsp;&nbsp;
+  							<input type="radio" name="slot" value="slot18"> 10:00&nbsp;&nbsp;
+  							<input type="radio" name="slot" value="slot19"> 11:00&nbsp;&nbsp;
+							<input type="radio" name="slot" value="slot20"> 12:00&nbsp;&nbsp;
+							<input type="radio" name="slot" value="slot21"> 17:00&nbsp;&nbsp;
+  							<input type="radio" name="slot" value="slot22"> 18:00&nbsp;
+  							<input type="radio" name="slot" value="slot23"> 19:00&nbsp;
+							<input type="radio" name="slot" value="slot24"> 20:00  
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3"></label>
 						<div class="col-md-9">
-							<p>Already a member? <a href="login.php">Log In</a></p>
-							<p><a href="../doctor.php">Home</a></p>
+							<button type="submit" class="btn btn-danger" name="bookedSlot">Confirm</button>
 						</div>
 					</div>
 				</form>

@@ -50,6 +50,10 @@ if (isset($_POST['submitDoctorLogin'])) {
 			exit();
 		}
 
+		$did = $row['doctorID'];
+		$sql = "update doctorLogin set lastLogin = now() where doctorID = '$did';";
+		$result = $conn->query($sql);
+
 		$_SESSION['doctorID'] = $row['doctorID'];
 		$_SESSION['email'] = $row['email'];
 		$_SESSION['lastLogin'] = $row['lastLogin'];

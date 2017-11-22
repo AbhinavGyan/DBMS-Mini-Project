@@ -1,15 +1,18 @@
 <?php
-
 session_start();
+require_once "includes/connect.php";
 
 ?>
-<html>
-<head><title>View Doctor</title>
-      <meta charset="utf-8">
-	   <meta name="viewport" content="width=device-width, initial-scale=1">    
-       <link rel="stylesheet" href="css/bootstrap.min.css">
-	    <script src="scripts/jquery.min.js"></script>
-	    <script src="scripts/bootstrap.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LOGIN</title>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="scripts/jquery.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
 </head>
 <style>
 .b{padding-left:15px;
@@ -29,13 +32,12 @@ color: #eeeeee;
 background-color: #211f22;
 text-allign:centre;
 }
-.btn-info{margin-right:10px;
-float:right;}
+.btn-i{ margin-right:25px; margin-bottom: 25px;float:right;}
 
 </style>
 <body>
-
- <nav class="navbar navbar-inverse navbar-fixed-top">
+    <!-- Bootstrap Navigation Bar Top -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbarTop">
@@ -47,7 +49,9 @@ float:right;}
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbarTop">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="index.php">For Patients</a></li>
+					<li><a href="index.php">For Patients</a></li>
+					<li class="navbar-text"> </li>
+					<li><a href="doctor.php">For Doctors</a></li>
 					<li class="navbar-text"> </li>
 
 					<?php
@@ -77,68 +81,111 @@ float:right;}
 		</div>
 	</nav>
 	<nav class="navbar navbar-inverse" style="margin-bottom: 0;"></nav>
-<br><br>
-<?php
 
-require_once "includes/connect.php"; 
+	<div class="container-fluid">
+	<div class="container a">
+	<div class="row">
 
-$x = $_GET["doctorID"];
+		<?php
+			$doctorID = $_GET["doctorID"];
+			$sql = "select * from doctor where doctorID = '$doctorID';";
+			$result = $conn->query($sql);
 
-$sql = "select * from doctor where doctorID = '$x';";
-$result = mysqli_query($conn, $sql);
+			if($row = $result->fetch_assoc()) {
+			        
+		        $firstName = $row["firstName"];
+		        $lastName = $row["lastName"];
+		        $gender = $row["gender"];
+		        $phone = $row["phoneNumber"];
+		        $qualification = $row["qualification"];
+		        $departmentID = $row['departmentID'];
+		        $buildingID = $row['buildingID'];
+		        $experience = $row["experience"];
+		        $fee = $row["fee"];
+			}
 
-if($result->num_rows === 1) {
-    while($row = $result->fetch_assoc()) {
-        
-        $firstName = $row["firstName"];
-        $lastName = $row["lastName"];
-        $gender = $row["gender"]; 
-        $qualification = $row["qualification"];
-        $phoneNumber = $row["phoneNumber"];
-        $fee = $row["fee"];
-        $doctorID = $row["doctorID"];
-    ?>
-    <div class="media thumb">
-        <div class="media-body b">
-           <h4 class="media-heading"><b> <?php echo $firstName;?> <?php echo $lastName;?></b></h4>
-           <p>Gender : <?php echo $gender;?></p>
-           <p>Qualification :  <?php echo $qualification;?></p>
-           <p>Contact :  <?php echo $phoneNumber;?></p>
-           <p>Fee : <?php echo $fee;?>/-</p>
-            <a href="booking.php?doctorID=<?php echo $doctorID; ?>"><span class="btn btn-info">
-	        BOOK NOW &rsaquo;&rsaquo;
-	       </span></a>
+			$sql = "select * from department where departmentID = '$departmentID';";
+			$result = $conn->query($sql);
 
-        </div>
+			if($row = $result->fetch_assoc()) {
+			        
+		        $departmentName = $row['name'];
+			}
 
+			$sql = "select * from building where buildingID = '$buildingID';";
+			$result = $conn->query($sql);
+
+			if($row = $result->fetch_assoc()) {
+			        
+		        $buildingName = $row['name'];
+		        $buildingType = $row['type'];
+		        $addressLine1 = $row['addressLine1'];
+		        $addressLine2 = $row['addressLine2'];
+		        $addressLine3 = $row['addressLine3'];
+		        $city = $row['city'];
+		        $pin = $row['pin'];
+			}
+
+			$conn->close();
+		?>
+
+		<div class="media thumb">
+            <div class="media-body b">
+                <div class="row"><div class="col-md-12">
+                    <h3 class="media-heading">
+                    <?php echo "Dr. ".$firstName." ".$lastName;?></h3>
+                    <br>
+                </div></div>
+                <div class="row">
+                
+                <div class="col-md-2"><h4>
+                <p>Gender: </p>
+                <p>Phone Number: </p>
+               	<p>Qualification: </p>
+                <p>Department: </p>
+                <p>Experience: </p>
+                <p>Fee: </p></h4>
+                </div>
+
+                <div class="col-md-10"><h4>
+                <p><?php echo $gender;?></p>
+                <p><?php echo $phone;?></p>
+                <p><?php echo $qualification;?></p>
+                <p><?php echo $departmentName;?></p>
+                <p><?php echo $experience." years";?></p>
+                <p><?php echo "&#8377; ".$fee;?></p></h4>
+                </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                	<div class="col-md-12">
+                    	<h4 class="media-heading"><?php echo $buildingType." Address: ";?></h4>
+                    </div>
+                </div>
+                <div class="row">
+                	<div class="col-md-1"></div>
+                    <div class="col-md-9">
+                    	<h3><?php echo $buildingName;?></h3>
+                    	<h4><?php echo $addressLine1.", ".$addressLine2.",";?></h4>
+                    	<h4><?php echo $addressLine3.", ".$city." - ".$pin;?></h4>
+                	</div>
+                	<div class="col-md-2">
+                <br>
+                <br>
+                <br>
+                <a href="booking.php?doctorID=<?php echo $doctorID; ?>"><span class="btn btn-i btn-danger">
+                Book &rsaquo;&rsaquo;
+                </span></a>
+                </div>
+                </div>
+
+            </div>
+        </div><br>
+        </div></div>
     </div>
-<?php   } 
-}
-else {
-    echo "0 results";
-}
-
-/*$result = mysql_query("SELECT number FROM one");
-
-$array = array();
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = mysql_fetch_assoc($result)) {
-        $array[] = $row;
-        echo $row['number'];
-    }
-    print_r($array);
-    echo $array[0];
-} 
-else {
-    echo "0 results";
-}
-*/
-$conn->close();
-?>
-<br>
-<a href="index.php">Back to Main Page</a>
-
+    <?php
+        include_once 'includes/footer.php';
+    ?>
 </body>
 </html>

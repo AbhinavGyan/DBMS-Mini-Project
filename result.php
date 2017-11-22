@@ -124,6 +124,7 @@ text-allign:centre;
                     while($row = $result2->fetch_assoc()) {
                         $firstName = $row["firstName"];
                         $lastName = $row["lastName"];
+                        $gender = $row["gender"];
                         $experience = $row["experience"]; 
                         $qualification = $row["qualification"];
                         $fee = $row["fee"];
@@ -141,6 +142,7 @@ text-allign:centre;
                             <div class="row">
                             
                             <div class="col-md-2"><h4>
+                            <p>Gender: </p>
                            	<p>Qualification: </p>
                             <p>Department: </p>
 		                    <p>Experience: </p>
@@ -149,6 +151,7 @@ text-allign:centre;
                             </div>
 
                             <div class="col-md-8"><h4>
+                            <p><?php echo $gender;?></p>
                             <p><?php echo $qualification;?></p>
                             <p><?php echo $departmentName;?></p>
                             <p><?php echo $experience." years";?></p>
@@ -177,24 +180,7 @@ text-allign:centre;
                 else {
                     echo "<h4>Your search - '$x' - did not match any doctors.</h4>";
                 }
-                
-                /*$result = mysql_query("SELECT number FROM one");
 
-                $array = array();
-
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = mysql_fetch_assoc($result)) {
-                        $array[] = $row;
-	                    echo $row['number'];
-                    }
-	                print_r($array);
-	                echo $array[0];
-                } 
-                else {
-                    echo "0 results";
-                }
-                */
                 $conn->close();
            ?>
            </div></div></div></div>

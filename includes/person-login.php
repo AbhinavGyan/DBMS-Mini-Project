@@ -50,6 +50,10 @@ if (isset($_POST['submitPersonLogin'])) {
 			exit();
 		}
 
+		$pid = $row['personID'];
+		$sql = "update personLogin set lastLogin = now() where personID = '$pid';";
+		$result = $conn->query($sql);
+
 		$_SESSION['personID'] = $row['personID'];
 		$_SESSION['email'] = $row['email'];
 		$_SESSION['lastLogin'] = $row['lastLogin'];

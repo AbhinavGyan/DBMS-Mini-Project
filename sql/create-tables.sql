@@ -66,11 +66,11 @@ create table building (
 	name varchar(100) not null,
 	type varchar(8) not null,
 
-	addressLine1 varchar(100),
-	addressLine2 varchar(100),
-	addressLine3 varchar(100),
-	city varchar(50),
-	pin int(6),
+	addressLine1  varchar(100) not null,
+	addressLine2 varchar(100) not null,
+	addressLine3 varchar(100) not null,
+	city varchar(50) not null,
+	pin int(6) not null,
 
 	latitude double not null,
 	longitude double not null,

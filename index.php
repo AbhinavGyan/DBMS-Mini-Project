@@ -229,13 +229,13 @@ session_start();
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner">
 			<div class="item active">
-				<img src="images/1.jpg" alt="Slide 1">
+				<img src="images/1.png" alt="Slide 1">
 			</div>
 			<div class="item">
-				<img src="images/1.jpg" alt="Slide 2">
+				<img src="images/2.png" alt="Slide 2">
 			</div>
 			<div class="item">
-				<img src="images/1.jpg" alt="Slide 3">
+				<img src="images/3.png" alt="Slide 3">
 			</div>
 		</div>
 		<!-- Left and right controls -->
@@ -289,6 +289,27 @@ session_start();
 		<div class="item active">
 			<img src="images/search.png" alt="Search Image">
 		</div>
+	</div>
+
+	<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-6">
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<h1>Instant appointment with doctors.<br>
+		<b>Guaranteed.</b></h1>
+		<br>
+		<h1>Skip the waiting room.<br>
+		<b>Consult online.</b></h1>
+	</div>
+	<div class="col-md-3">
+		<img src="images/index1.png" height="498" width="243">
+	</div>
+	<div class="col-md-2"></div>
 	</div>
 
 	<?php
