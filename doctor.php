@@ -293,7 +293,7 @@ session_start();
      <div class="desktop image-container  col-xs-12 col-sm-6 cushion-right
        screenshot-sticky-wrap ">
         <img class=" desktop" alt="SABS"
-        title="SABS for doctors" src= "imageshealthfeed.jpg" width="600" />
+        title="SABS for doctors" src= "images/healthfeed.jpg" width="600" />
     </div>
   </div>
 
